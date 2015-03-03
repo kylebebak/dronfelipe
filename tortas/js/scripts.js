@@ -53,10 +53,6 @@
 				return nav.outerHeight() + 20;
 			});
 
-			home.css("margin-top", function() {
-				return -(nav.outerHeight() + 5);
-			});
-
 			// the slideDown method is invoked within the callback that processes the data returned by the controller. this way, slideDown is invoked after the html is inserted into the DOM by this callback. if this method isn't invoked here, the $.post() method, which is asynchronous, does not return in time to calculate the height of the menu divs based on the new content
 			menu.slideDown(slide_speed);
 

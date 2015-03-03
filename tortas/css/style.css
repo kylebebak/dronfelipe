@@ -11,8 +11,9 @@ body {
 }*/
 
 
+/* overrides skeleton max width of 960px*/
 .container {
-  width: 800px;
+  max-width: 1280px;
 }
 
 .nav-container {
@@ -34,10 +35,10 @@ body {
 }
 
 #home {
-  margin-left: 35px;
-  margin-top: -110px;
-  font-family: 'Helvetica Neue';
+  margin-left: -9.1%;
+  margin-top: .3%;
   font-weight: bold;
+  position: static !important;
 }
 
 #home a {
