@@ -472,7 +472,7 @@
 
           var json = $.parseJSON(data);
 
-          visits += "<p><strong>arrive arrival and departure: " + self.secondsToTime(json.mean_times.start) + " -> " + self.secondsToTime(json.mean_times.end) + "</strong></p>";
+          visits += "<p><strong>average arrival and departure: " + self.secondsToTime(json.mean_times.start) + " -> " + self.secondsToTime(json.mean_times.end) + "</strong></p>";
           $.each(json.results, function(index, val) {
             visits += "<p>" + val.start_date + ", <strong>duration:</strong> " + self.secondsToTime(val.duration) + "</p>"
           });
