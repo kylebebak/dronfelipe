@@ -1,6 +1,6 @@
 <?php
 
-include_once '../php/Tortas.php';
+include_once '../models/Tortas.php';
 
 // this controller only invoked from $.post method, which means there is no need to check if the $_POST array is populated
 $num_tortas = $_POST["num_tortas"];

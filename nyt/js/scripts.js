@@ -9,7 +9,6 @@
 			this.period = config.period;
 			this.query = config.query;
 			this.searchDelay = config.searchDelay;
-			this.maxThumbWidth = config.maxThumbWidth;
 
 			this.url = '';
 			this.articles = [];
@@ -207,18 +206,24 @@
 
 
 
-    	// find largest thumbnail available for article whose width is less than 400
+    	// find largest thumbnail available for article, and size it down if necessary according to max-width specified in style sheet
     	$.each(self.arts, function(ia, article) {
 
     		var w = 0;
     		if (article.thumbs) {
     			$.each(article.thumbs, function(it, thumb) {
-    				if (thumb.width > w && thumb.width < self.maxThumbWidth) {
+    				if (thumb.width > w) {
     					w = thumb.width;
     					article.thumb = thumb.url;
 
+    					// break out of loop if image is already sufficiently large, to avoid loading really large images which will immediately be sized down
+
     					if (self.resource === 'articlesearch') {
     						article.thumb = 'http://graphics8.nytimes.com/' + article.thumb;
+    					}
+
+    					if (w > 300) {
+    						return false;
     					}
     				}
     			});
@@ -232,18 +237,10 @@
     	var template = Handlebars.compile(self.template);
 			self.container.append(template(self.arts));
 
-			// set min-height of each list item to height of its thumbnail if it has one
+			// set min-height of each list item to height of its thumbnail
 			$('ul.articles').find('li').children('img').load(function() {
 				var img = $(this),
-					h = img.height(),
-						w = img.width(),
-							wBody = $('body').width();
-
-				if (w > wBody) {
-					img.css("width", function() {
-						return wBody - 32;
-					});
-				}
+					h = img.height();
 
 				img.parent().css("min-height", function() {
 					return h + 32;
@@ -260,8 +257,7 @@
 		resource: "mostviewed",
 		period: '1',
 		query: '',
-		searchDelay: '1000',
-		maxThumbWidth: '425'
+		searchDelay: '1000'
 	});
 
 

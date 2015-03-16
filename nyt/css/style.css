@@ -1,6 +1,6 @@
 body {
 	padding-top: 80px;
-	width: 725px;
+	width: 750px;
 	margin: auto;
 	margin-bottom: 100px;
 }
@@ -77,3 +77,6 @@ a#home {
 }
 
 
+img {
+	max-width: 400px;
+}

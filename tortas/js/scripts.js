@@ -15,9 +15,11 @@
 													maxes = {'num_tortas': 100, 'num_ingredients': 5};
 
 
-	// listen for form submission rather than button click event, send form params to controller and return json with restaurant name and updated menu, split into two columns
+	// listen for form submission rather than button click event, send form params to controller and return json with updated restaurant name and menu, split into two columns
 	form.on('submit', function(e) {
 		e.preventDefault();
+
+
 
 		// validate input. it might be nice to write a reusable function with this code, because it's sort of nice
 		var values = {},
@@ -39,6 +41,8 @@
 			postString += input.name + "=" + values[input.name] + "&";
 		});
 		postString = postString.substring(0, postString.length - 1);
+
+
 
 
 		// post validated input variables in post string to tortas controller

@@ -1,6 +1,6 @@
 body {
 	padding-top: 80px;
-	width: 725px;
+	width: 750px;
 	margin: auto;
 	margin-bottom: 100px;
 }
@@ -58,7 +58,6 @@ main li a {
 	color: #0FA0CE;
 	font-weight: bold;
 	text-decoration: none;
-	margin-bottom: .25em;
 }
 
 main li a:hover {
