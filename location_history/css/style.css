@@ -1,0 +1,174 @@
+html, body {
+  height: 99%;
+}
+
+body {
+  width: 100% !important;
+  margin-bottom: 0px !important;
+}
+
+#wrapper {
+	position: relative;
+	height: 99%;
+  margin: 0px 40px 0px;
+  border: 1px solid gray;
+}
+
+#map-canvas {
+  height: 100%;
+  width: 100%;
+}
+
+
+
+
+
+/*enable scrollbar image in chrome and safari, in mozilla it's enabled by default*/
+.resource-window::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.resource-window::-webkit-scrollbar:vertical {
+    width: 10px;
+}
+
+.resource-window::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 2px solid #eee; /* should match background, can't be transparent */
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.resource-window::-webkit-scrollbar-track {
+    background-color: #eee;
+    border-radius: 8px;
+}
+
+
+
+
+
+
+.resource-window {
+	position: absolute;
+	bottom: 5%;
+	left: 2%;
+	z-index: 99;
+
+	max-height: 40%;
+	/*min-width: 27%;*/
+	display: inline-block;
+	overflow: auto;
+
+	display: none;
+	background: white;
+	border: 1px solid gray;
+	border-radius: 3px;
+	padding: 5px 15px 5px;
+}
+
+.resource-window li {
+	list-style: none;
+	font-weight: normal;
+	margin-left: -30px;
+	padding-left: -10px;
+}
+
+.resource-window li.header {
+	font-weight: bold;
+}
+
+.resource-window p {
+	margin: .5em 0em .5em;
+}
+
+
+
+
+
+
+div.marker-content {
+	min-width: 500px;
+}
+.marker-content #header {
+	margin-bottom: .33em;
+	/*font-weight: bold;*/
+}
+
+.marker-content #button {
+	margin-top: .5em;
+	margin-bottom: 0em;
+	display: inline-block;
+}
+
+.marker-content .resource {
+	display: inline-block;
+	border: 2px solid gray;
+	border-radius: 2px;
+	padding: 0 10px 3px;
+	background: #eeeeee;
+	margin-left: 75px;
+	cursor: pointer;
+}
+
+
+
+.marker-content form {
+	padding-bottom: 5px;
+}
+
+.marker-content #form-inputs {
+	display: table;
+}
+
+.marker-content li {
+	display: table-row;
+}
+
+.marker-content label {
+	display: table-cell;
+}
+
+.marker-content input {
+	display: table-cell;
+	width: 400px;
+	margin-left: 10px;
+}
+
+
+
+
+
+
+
+input#limit {
+	width: 60px;
+}
+
+li#datepicker-container {
+	margin-top: 10px;
+	max-width: 350px;
+	padding-left: 10px;
+	padding-right: 25px;
+}
+
+
+li#weekdays-container {
+	margin-top: 8px;
+}
+
+li#search-container {
+	margin-top: 11px;
+	margin-right: 10px;
+	margin-left: -30px;
+}
+
+
+
+
+
+
+.wide-dropdown {
+	width: 400px !important;
+}
+
+

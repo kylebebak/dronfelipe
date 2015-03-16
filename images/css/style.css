@@ -1,0 +1,26 @@
+#videos li {
+	margin-bottom: .33em;
+}
+
+#images ul {
+	list-style: none;
+}
+
+#images li {
+	margin-top: 3em;
+	text-align: center;
+}
+
+
+/*override partials css*/
+body {
+	width: 600px;
+}
+
+/*width of screen is 1280, but with retina there are 2560 pixels on screen. this means i can serve images with double the width specified in the max-width attribute*/
+ul > li > img {
+  display: inline-block;
+  max-width: 450px;
+  min-height: 200px;
+  opacity: 0;
+}
