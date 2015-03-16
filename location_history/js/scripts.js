@@ -220,7 +220,10 @@
     setDateFilter: function() {
       var self = LH;
 
-      self.query.dateFilter = [];
+      // only trigger ajax call if query has changed
+      if (self.query.dateFilter[0] === self.startDateInput.val() && self.query.dateFilter[1] === self.endDateInput.val()) {
+        return;
+      }
 
       self.query.dateFilter[0] = self.startDateInput.val();
       self.query.dateFilter[1] = self.endDateInput.val();
@@ -230,13 +233,19 @@
     },
 
     setDayFilter: function() {
-      var self = LH;
-
-      self.query.dayFilter = [];
+      var self = LH,
+        dayFilter = [];
 
       self.daysContainer.find("option:not(:selected)").each(function() {
-        self.query.dayFilter.push($(this).val());
+        dayFilter.push($(this).val());
       });
+
+      // only trigger ajax call if query has changed
+      if ($(dayFilter).not(self.query.dayFilter).length === 0 && $(self.query.dayFilter).not(dayFilter).length === 0) {
+        return;
+      }
+
+      self.query.dayFilter = dayFilter;
 
       $(document).trigger( 'LH/query' );
 
