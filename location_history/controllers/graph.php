@@ -28,6 +28,24 @@ $query .= " GROUP BY DATE(start_date)";
 
 $results = $db->rawQuery($query, null, false);
 
+
+// convert seconds to hours, and make sure that no day is longer than 24 hours, by rolling extra hours over to the next record
+foreach($results as $index => &$result) {
+	$duration = $result['duration'];
+
+	if ($duration > 86400) {
+		if (isset($results[$index + 1])) {
+			$results[$index + 1]['duration'] += $duration - 86400;
+		}
+		$duration = 86400;
+
+	}
+
+	$result['duration'] = round($duration / 3600, 1);
+}
+unset($value);
+
+
 echo json_encode($results);
 
 
