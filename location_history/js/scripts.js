@@ -4,7 +4,6 @@
 
   // enable location search form
   $('select#search-options').select2({
-    placeholder: 'search locations',
     dropdownCssClass: 'wide-dropdown',
     width: "200",
     matcher: function(term, text, opt) {
@@ -129,6 +128,8 @@
           e.preventDefault();
           self.setLimit.call(this);
         }
+      }).on('focusout', function() {
+        self.setLimit.call(this);
       });
 
 
@@ -146,23 +147,24 @@
 
 
       // highlight marker on hover
-      }).on("select2-highlight", function(e) {
-
-        if (self.highlightedMarkerID) {
-          self.changeMarkerImage(self.markers[self.highlightedMarkerID], 'img/marker-red.png', self.markerSize.maxW, self.markerSize.maxH);
-        }
-
-        self.highlightedMarkerID = e.val;
-        self.changeMarkerImage(self.markers[self.highlightedMarkerID], 'img/marker-red-highlighted.png', self.markerSize.maxWHighlighted, self.markerSize.maxH);
-
-      // unhighlight marker on close
-      }).on("select2-close", function() {
-
-        if (self.highlightedMarkerID) {
-          self.changeMarkerImage(self.markers[self.highlightedMarkerID], 'img/marker-red.png', self.markerSize.maxW, self.markerSize.maxH);
-        }
-
       });
+      // .on("select2-highlight", function(e) {
+
+      //   if (self.highlightedMarkerID) {
+      //     self.changeMarkerImage(self.markers[self.highlightedMarkerID], 'img/marker-red.png', self.markerSize.maxW, self.markerSize.maxH);
+      //   }
+
+      //   self.highlightedMarkerID = e.val;
+      //   self.changeMarkerImage(self.markers[self.highlightedMarkerID], 'img/marker-red-highlighted.png', self.markerSize.maxWHighlighted, self.markerSize.maxH);
+
+      // // unhighlight marker on close
+      // }).on("select2-close", function() {
+
+      //   if (self.highlightedMarkerID) {
+      //     self.changeMarkerImage(self.markers[self.highlightedMarkerID], 'img/marker-red.png', self.markerSize.maxW, self.markerSize.maxH);
+      //   }
+
+      // });
 
     },
 
@@ -210,6 +212,11 @@
       // coerce input to be positive number
       if (isNaN(this.value) || this.value <= 0) {
         $(this).val(self.defaultLimit);
+      }
+
+      // only trigger ajax call if query has changed
+      if (self.query.limit === this.value) {
+        return;
       }
 
       self.query.limit = this.value;
@@ -293,7 +300,10 @@
     rebuildSearchOptions: function() {
       var self = LH;
 
-      self.searchOptions.find("option").remove();
+      self.searchOptions.find("option#placeholder").nextAll().remove();
+      // this will fail to programmatically select any options, which will cause the placeholder to appear by default again
+      self.searchOptions.select2("val", "");
+
 
       $.each(self.markers, function(id, marker) {
         self.searchOptions.append('<option value="' + id + '" data-search="' + marker.data.name + ' ' + marker.data.description + '">' + marker.data.geocode_name + '</option>');
@@ -335,7 +345,7 @@
       // put markers on map for each location returned in result set
       self.results.forEach(function(result) {
 
-        // fancy scaling algorithm to allow for markers with dynamic sizes
+        // fancy scaling to allow for markers with dynamic sizes
         var scalingFactor = Math.sqrt(Math.sqrt(result.duration / self.maxDuration) + Math.pow(self.markerSize.minScalingFactor, 2));
 
         var contentString = '<div class="marker-content">' +
