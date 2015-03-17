@@ -274,11 +274,11 @@
       self.deleteResults();
 
       // pass query object literal to location controller
-      $.post('controllers/location_history.php', self.query, function(data) {
+      $.post('controllers/main.php', self.query, function(data) {
 
         self.results = $.parseJSON(data);
 
-        $.post('controllers/global_metrics.php', self.query, function(data) {
+        $.post('controllers/global.php', self.query, function(data) {
 
           var json = $.parseJSON(data);
           self.global.visits = json.visits[0];
@@ -354,7 +354,7 @@
 
         // geocode_name and number of hours spent at this location as header
         '<p id="header">' + result.geocode_name +
-        '<br><strong id="location-metrics">' + (result.duration / 3600).toFixed(2) + ' hours, ' + result.visits + ' visits, ' + self.secondsToTime(Math.round(result.duration / result.visits)) + ' avg</strong></p>' +
+        '<br><strong id="location-metrics">' + (result.duration / 3600).toFixed(1) + ' hours, ' + result.visits + ' visits, ' + self.secondsToTime(Math.round(result.duration / result.visits)) + ' avg</strong></p>' +
         '<form action="#">' +
           '<div id="form-inputs">' +
             '<li>' +
@@ -447,7 +447,7 @@
 
 
         // pass values submitted in form to update controller and persist them in db
-        $.post('controllers/update_location.php', $(this).serialize() + '&id=' + marker.data.id, function() {
+        $.post('controllers/update.php', $(this).serialize() + '&id=' + marker.data.id, function() {
           self.closeInfoWindow();
         });
 
@@ -494,7 +494,7 @@
         var self = LH,
           visits = "";
 
-        return $.post('controllers/visits_to_location.php', self.query, function(data) {
+        return $.post('controllers/visits.php', self.query, function(data) {
 
           var json = $.parseJSON(data);
 
@@ -511,7 +511,7 @@
       graph: function() {
         var self = LH;
 
-        return $.post('controllers/visits_to_location_daily.php', self.query, function(data) {
+        return $.post('controllers/graph.php', self.query, function(data) {
 
           var json = $.parseJSON(data);
 
@@ -524,7 +524,7 @@
             width: 1000,
             height: 250,
             target: ".resource-window",
-            max_y: 86400,
+            max_y: 25,
             x_accessor: "date",
             y_accessor: "duration",
             interpolate: "monotone"
@@ -540,13 +540,13 @@
             '<li class="header">visits' +
               '<ul>' +
                 '<li>' + self.global.visits.num + '</li>' +
-                '<li>' + (self.global.visits.duration / 3600).toFixed(2) + ' hours</li>' +
+                '<li>' + (self.global.visits.duration / 3600).toFixed(0) + ' hours</li>' +
               '</ul>' +
             '</li>' +
             '<li class="header">trips' +
               '<ul>' +
                 '<li>' + self.global.trips.num + '</li>' +
-                '<li>' + (self.global.trips.duration / 3600).toFixed(2) + ' hours</li>' +
+                '<li>' + (self.global.trips.duration / 3600).toFixed(0) + ' hours</li>' +
               '</ul>' +
             '</li>' +
           '</ul>');
