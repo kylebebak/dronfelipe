@@ -146,25 +146,24 @@
         self.openMarker(self.markers[e.val]);
 
 
-      // highlight marker on hover
+      // highlight marker on hover FIX BUG HERE
+      }).on("select2-highlight", function(e) {
+
+        if (self.highlightedMarkerID) {
+          self.changeMarkerImage(self.markers[self.highlightedMarkerID], 'img/marker-red.png', self.markerSize.maxW, self.markerSize.maxH);
+        }
+
+        self.highlightedMarkerID = e.val;
+        self.changeMarkerImage(self.markers[self.highlightedMarkerID], 'img/marker-red-highlighted.png', self.markerSize.maxWHighlighted, self.markerSize.maxH);
+
+      // unhighlight marker on close
+      }).on("select2-close", function() {
+
+        if (self.highlightedMarkerID) {
+          self.changeMarkerImage(self.markers[self.highlightedMarkerID], 'img/marker-red.png', self.markerSize.maxW, self.markerSize.maxH);
+        }
+
       });
-      // .on("select2-highlight", function(e) {
-
-      //   if (self.highlightedMarkerID) {
-      //     self.changeMarkerImage(self.markers[self.highlightedMarkerID], 'img/marker-red.png', self.markerSize.maxW, self.markerSize.maxH);
-      //   }
-
-      //   self.highlightedMarkerID = e.val;
-      //   self.changeMarkerImage(self.markers[self.highlightedMarkerID], 'img/marker-red-highlighted.png', self.markerSize.maxWHighlighted, self.markerSize.maxH);
-
-      // // unhighlight marker on close
-      // }).on("select2-close", function() {
-
-      //   if (self.highlightedMarkerID) {
-      //     self.changeMarkerImage(self.markers[self.highlightedMarkerID], 'img/marker-red.png', self.markerSize.maxW, self.markerSize.maxH);
-      //   }
-
-      // });
 
     },
 
@@ -172,11 +171,13 @@
     changeMarkerImage: function(marker, url, maxW, maxH) {
       var self = LH;
 
-      marker.setIcon({
-        url: url,
-        scaledSize: new google.maps.Size(maxW * marker.scalingFactor,
-          maxH * marker.scalingFactor)
-      });
+      if (marker) {
+        marker.setIcon({
+          url: url,
+          scaledSize: new google.maps.Size(maxW * marker.scalingFactor,
+            maxH * marker.scalingFactor)
+        });
+      }
 
     },
 
@@ -209,9 +210,10 @@
     setLimit: function() {
       var self = LH;
 
-      // coerce input to be positive number
+      // ignore NaN and non-positive values
       if (isNaN(this.value) || this.value <= 0) {
-        $(this).val(self.defaultLimit);
+        $(this).val(self.query.limit);
+        return;
       }
 
       // only trigger ajax call if query has changed
