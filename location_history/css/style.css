@@ -54,8 +54,7 @@ body {
 	left: 2%;
 	z-index: 99;
 
-	max-height: 40%;
-	/*min-width: 27%;*/
+	max-height: 50%;
 	display: inline-block;
 	overflow: auto;
 
@@ -81,26 +80,29 @@ body {
 	margin: .5em 0em .5em;
 }
 
+.resource-window p#visits-header {
+	font-weight: bold;
+}
 
 
 
 
-
-div.marker-content {
+.info-window {
 	min-width: 500px;
 }
-.marker-content #header {
+
+.info-window #header {
 	margin-bottom: .33em;
 	/*font-weight: bold;*/
 }
 
-.marker-content #button {
+.info-window #button {
 	margin-top: .5em;
 	margin-bottom: 0em;
 	display: inline-block;
 }
 
-.marker-content .resource {
+.info-window .resource {
 	display: inline-block;
 	border: 2px solid gray;
 	border-radius: 2px;
@@ -112,26 +114,31 @@ div.marker-content {
 
 
 
-.marker-content form {
+.info-window form {
 	padding-bottom: 5px;
 }
 
-.marker-content #form-inputs {
+.info-window #form-inputs {
 	display: table;
 }
 
-.marker-content li {
+.info-window li {
 	display: table-row;
 }
 
-.marker-content label {
+.info-window label {
 	display: table-cell;
 }
 
-.marker-content input {
+.info-window input {
 	display: table-cell;
 	width: 400px;
 	margin-left: 10px;
+}
+
+/* to make sure that the div containing the info-window content is large enough to accomodate this content */
+div.gm-style-iw > div {
+	max-height: 120% !important;
 }
 
 

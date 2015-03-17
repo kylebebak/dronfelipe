@@ -51,10 +51,10 @@
 
       // size markers depending on their duration
       this.markerSize = {
-        minScalingFactor: .35,
-        maxW: 42,
-        maxH: 68,
-        maxWHighlighted: 103
+        minScalingFactor: .3,
+        maxW: 44,
+        maxH: 70,
+        maxWHighlighted: 108
       }
 
       if (!google.loader.ClientLocation) {
@@ -350,7 +350,7 @@
         // fancy scaling to allow for markers with dynamic sizes
         var scalingFactor = Math.sqrt(Math.sqrt(result.duration / self.maxDuration) + Math.pow(self.markerSize.minScalingFactor, 2));
 
-        var contentString = '<div class="marker-content">' +
+        var contentString = '<div class="info-window">' +
 
         // geocode_name and number of hours spent at this location as header
         '<p id="header">' + result.geocode_name +
@@ -429,15 +429,15 @@
       marker.infowindow.open(self.map, marker);
 
       // set values of input elements in form to name and description retrieved from DB. nothing needs to be escaped here, because the val method expects and assigns a string to the input's value attribute. it does not expect or insert html into the DOM
-      $('.marker-content input#name').val(marker.data.name);
-      $('.marker-content input#description').val(marker.data.description);
+      $('.info-window input#name').val(marker.data.name);
+      $('.info-window input#description').val(marker.data.description);
 
 
 
 
 
       // add click listener to button in order to post to location controller and update fields
-      $('.marker-content form').on('submit', function(e) {
+      $('.info-window form').on('submit', function(e) {
         e.preventDefault();
 
         // update marker object with values submitted in form
@@ -454,10 +454,14 @@
       });
 
       // add click listener for displaying resources
-      $('.marker-content .resource').on('click', function() {
+      $('.info-window .resource').on('click', function() {
         var resource = $(this).attr("value");
 
         self.resourceWindow.fadeOut(function() {
+
+          // clear content from resource window
+          self.resourceWindow.html("");
+
           if (resource != self.resourceWindow.attr("value")) {
 
             var promise = self.renderResourceWindow[resource]();
@@ -466,6 +470,7 @@
               self.resourceWindow.attr("value", resource);
             });
           } else {
+            // clear value of resource window if it has been closed
             self.resourceWindow.attr("value", "");
           }
         });
@@ -493,7 +498,8 @@
 
           var json = $.parseJSON(data);
 
-          visits += "<p><strong>average arrival and departure: " + self.secondsToTime(json.mean_times.start) + " -> " + self.secondsToTime(json.mean_times.end) + "</strong></p>";
+          visits += '<p id="visits-header">avg arrival: ' + self.secondsToTime(json.mean_times.start) + ", ";
+          visits += "avg departure: " + self.secondsToTime(json.mean_times.end) + "</p>";
           $.each(json.results, function(index, val) {
             visits += "<p>" + val.start_date + ", <strong>duration:</strong> " + self.secondsToTime(val.duration) + "</p>"
           });
@@ -505,10 +511,26 @@
       graph: function() {
         var self = LH;
 
-        self.resourceWindow.html("graph");
+        return $.post('controllers/visits_to_location_daily.php', self.query, function(data) {
 
-        var dfd = $.Deferred();
-        return dfd.resolve().promise();
+          var json = $.parseJSON(data);
+
+          json = MG.convert.date(json, 'date');
+
+          // no title in order to save space
+          MG.data_graphic({
+            data: json,
+            missing_is_zero: true,
+            width: 1000,
+            height: 250,
+            target: ".resource-window",
+            max_y: 86400,
+            x_accessor: "date",
+            y_accessor: "duration",
+            interpolate: "monotone"
+          });
+
+        });
       },
 
       global: function() {
@@ -517,14 +539,14 @@
         self.resourceWindow.html('<ul>' +
             '<li class="header">visits' +
               '<ul>' +
-                '<li>number: ' + self.global.visits.num + '</li>' +
-                '<li>duration: ' + (self.global.visits.duration / 3600).toFixed(2) + ' hours</li>' +
+                '<li>' + self.global.visits.num + '</li>' +
+                '<li>' + (self.global.visits.duration / 3600).toFixed(2) + ' hours</li>' +
               '</ul>' +
             '</li>' +
             '<li class="header">trips' +
               '<ul>' +
-                '<li>number: ' + self.global.trips.num + '</li>' +
-                '<li>duration: ' + (self.global.trips.duration / 3600).toFixed(2) + ' hours</li>' +
+                '<li>' + self.global.trips.num + '</li>' +
+                '<li>' + (self.global.trips.duration / 3600).toFixed(2) + ' hours</li>' +
               '</ul>' +
             '</li>' +
           '</ul>');
