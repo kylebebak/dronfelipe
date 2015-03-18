@@ -452,6 +452,8 @@
         // pass values submitted in form to update controller and persist them in db
         $.post('controllers/update.php', $(this).serialize() + '&id=' + marker.data.id, function() {
           self.closeInfoWindow();
+          // update data-search attribute in search option with values submitted in form
+          self.searchOptions.children("[value='_" + marker.data.id + "']").attr("data-search", marker.data.name + " " + marker.data.description);
         });
 
       });
