@@ -401,6 +401,10 @@
           self.openMarker(marker);
           self.searchOptions.select2("val", "_" + marker.data.id);
         });
+        google.maps.event.addListener(marker.infowindow, 'closeclick', function() {
+          // make sure resourceWindow is closed along with infowindow
+          self.closeInfoWindow();
+        });
       });
 
 
