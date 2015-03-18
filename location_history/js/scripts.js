@@ -93,6 +93,7 @@
       this.maxDuration = '';
       this.global = {};
       this.visits = '';
+      this.resourceWindowAnimating = false;
     },
 
 
@@ -188,7 +189,7 @@
             seconds = totalSeconds % 60;
 
       // return hours + "h " + minutes + "m " + seconds + "s";
-      return hours + "h " + minutes + "m ";
+      return hours + "h " + minutes + "m";
     },
 
 
@@ -438,9 +439,7 @@
 
 
 
-
-
-      // add click listener to button in order to post to location controller and update fields
+      // add click listener to button in order to post to controller and update fields
       $('.info-window form').on('submit', function(e) {
         e.preventDefault();
 
@@ -459,26 +458,28 @@
 
       // add click listener for displaying resources
       $('.info-window .resource').on('click', function() {
-        var resource = $(this).attr("value");
 
-        self.resourceWindow.fadeOut(function() {
+        if (!self.resourceWindowAnimating) {
+          self.resourceWindowAnimating = true;
 
-          // clear content from resource window
-          self.resourceWindow.html("");
+          var resource = $(this).attr("value"),
+            oldResource = self.resourceWindow.attr("value");
 
-          if (resource != self.resourceWindow.attr("value")) {
+          self.resourceWindow.fadeOut(function() {
+            if (resource == oldResource) {
+              self.resourceWindow.attr("value", "");
+              self.resourceWindowAnimating = false;
+            } else {
+              self.renderResourceWindow[resource]().done(function() {
+                self.resourceWindow.attr("value", resource);
+                self.resourceWindow.fadeIn(function() {
+                  self.resourceWindowAnimating = false;
+                });
+              });
+            }
+          })
 
-            var promise = self.renderResourceWindow[resource]();
-            promise.done(function() {
-              self.resourceWindow.fadeIn();
-              self.resourceWindow.attr("value", resource);
-            });
-          } else {
-            // clear value of resource window if it has been closed
-            self.resourceWindow.attr("value", "");
-          }
-        });
-
+        }
       });
 
     },
@@ -514,6 +515,7 @@
 
       graph: function() {
         var self = LH;
+        self.resourceWindow.html("");
 
         return $.post('controllers/graph.php', self.query, function(data) {
 
