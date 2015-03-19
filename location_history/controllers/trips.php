@@ -21,7 +21,7 @@ $location_id = $_POST['location_id'];
 
     /* aggregate
     –––––––––––––––––––––––––––––– */
-$query = "SELECT COUNT(t.end_location_id) as count_lid, t.end_location_id, l.name, AVG(t.duration) as duration, SEC_TO_TIME(AVG(TIME_TO_SEC(TIME(t.start_date)))) as start_time, AVG(t.distance) as distance
+$query = "SELECT COUNT(t.end_location_id) AS count_lid, t.end_location_id, l.name, AVG(t.duration) AS duration, 0 AS start_time, AVG(t.distance) AS distance
 FROM trip t, location l
 WHERE t.end_location_id = l.id
 AND t.start_location_id = " . htmlspecialchars($location_id);
@@ -37,7 +37,7 @@ $start_aggregate = $db->rawQuery($query, null, false);
 
     /* all
     –––––––––––––––––––––––––––––– */
-$query = "SELECT t.end_location_id, l.name, DATE(t.start_date) AS start_date, TIME(t.start_date) AS start_time, t.duration, t.distance
+$query = "SELECT t.end_location_id, l.name, DATE(t.start_date) AS start_date, TIME(t.start_date) AS start_time, TIME_TO_SEC(t.start_date) AS start_time_sec, t.duration, t.distance
 FROM trip t, location l,
 	(SELECT COUNT(t.end_location_id) AS count_lid, t.end_location_id
 	FROM trip t
@@ -62,7 +62,7 @@ $start_all = $db->rawQuery($query, null, false);
 
     /* aggregate
     –––––––––––––––––––––––––––––– */
-$query = "SELECT COUNT(t.start_location_id) as count_lid, t.start_location_id, l.name, AVG(t.duration) as duration, SEC_TO_TIME(AVG(TIME_TO_SEC(TIME(t.end_date)))) as end_time, AVG(t.distance) as distance
+$query = "SELECT COUNT(t.start_location_id) AS count_lid, t.start_location_id, l.name, AVG(t.duration) AS duration, 0 AS end_time, AVG(t.distance) AS distance
 FROM trip t, location l
 WHERE t.start_location_id = l.id
 AND t.end_location_id = " . htmlspecialchars($location_id);
@@ -78,7 +78,7 @@ $end_aggregate = $db->rawQuery($query, null, false);
 
     /* all
     –––––––––––––––––––––––––––––– */
-$query = "SELECT t.start_location_id, l.name, DATE(t.end_date) AS end_date, TIME(t.end_date) AS end_time, t.duration, t.distance
+$query = "SELECT t.start_location_id, l.name, DATE(t.end_date) AS end_date, TIME(t.end_date) AS end_time, TIME_TO_SEC(t.end_date) AS end_time_sec, t.duration, t.distance
 FROM trip t, location l,
 	(SELECT COUNT(t.start_location_id) AS count_lid, t.start_location_id
 	FROM trip t
@@ -100,6 +100,39 @@ $end_all = $db->rawQuery($query, null, false);
 
 
 
+
+
+function modify_avg_times($all, &$aggregate, $location_string = 'end', $time_string = 'start') {
+
+	$old_id = '';
+	$times = array();
+
+	foreach ($all as $result) {
+		$id = $result[$location_string . '_location_id'];
+
+		if ($old_id !== $id) {
+			if (isset($times[$old_id]) && count($times[$old_id]) == 1) {
+				unset($times[$old_id]);
+				break;
+			}
+			$times[$id] = array();
+		}
+
+		$old_id = $id;
+		$times[$id][] = $result[$time_string . '_time_sec'];
+	}
+
+
+	foreach ($aggregate as &$result) {
+		$result[$time_string . '_time'] = round(circularMean(
+			$times[$result[$location_string . '_location_id']]
+			, 86400));
+	}
+	unset($result);
+}
+
+modify_avg_times($start_all, $start_aggregate);
+modify_avg_times($end_all, $end_aggregate, 'start', 'end');
 
 
 echo json_encode(array(

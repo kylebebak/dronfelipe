@@ -181,14 +181,20 @@
 
     },
 
-    secondsToTime: function(totalSeconds) {
+    secondsToTime: function(totalSeconds, format) {
+
+      format = typeof format !== 'undefined' ? format : 'time';
+
       var hours = Math.floor(totalSeconds / 3600),
         totalSeconds = totalSeconds % 3600,
           minutes = Math.floor(totalSeconds / 60),
             seconds = totalSeconds % 60;
 
-      // return hours + "h " + minutes + "m " + seconds + "s";
-      return hours + "h " + minutes + "m";
+      if (format === 'time') {
+        return ("0" + hours).slice(-2) + ":" + ("0" + minutes).slice(-2);
+      } else if (format === 'duration') {
+        return hours > 0 ? hours + "h " + minutes + "m" : minutes + "m";
+      }
     },
 
 
@@ -354,7 +360,7 @@
 
         // geocode_name and number of hours spent at this location as header
         '<p id="header">' + result.geocode_name +
-        '<br><strong id="location-metrics">' + (result.duration / 3600).toFixed(1) + ' hours, ' + result.visits + ' visits, ' + self.secondsToTime(Math.round(result.duration / result.visits)) + ' avg</strong></p>' +
+        '<br><strong id="location-metrics">' + (result.duration / 3600).toFixed(1) + ' hours, ' + result.visits + ' visits, ' + self.secondsToTime(Math.round(result.duration / result.visits), 'duration') + ' avg</strong></p>' +
         '<form action="#">' +
           '<div id="form-inputs">' +
             '<li>' +
@@ -513,7 +519,7 @@
           html += "avg departure: " + self.secondsToTime(json.mean_times.end) + "</p>";
 
           $.each(json.results, function(index, val) {
-            html += "<p>" + val.start_date + ", <strong>duration:</strong> " + self.secondsToTime(val.duration) + "</p>"
+            html += "<p>" + val.start_date + ", <strong>duration:</strong> " + self.secondsToTime(val.duration, 'duration') + "</p>"
           });
 
           self.resourceWindow.html(html);
@@ -605,8 +611,8 @@
             html += '<tr class="selectable" value="_' + val.end_location_id + '">' +
               "<td>" + val.count_lid + "</td>" +
               "<td>" + val.name + "</td>" +
-              "<td>" + val.start_time + "</td>" +
-              "<td>" + self.secondsToTime(val.duration) + "</td>" +
+              "<td>" + self.secondsToTime(val.start_time) + "</td>" +
+              "<td>" + self.secondsToTime(val.duration, 'duration') + "</td>" +
               "<td>" + (val.distance / 1000).toFixed(2) + "</td>" +
               "</tr>";
           });
@@ -632,7 +638,7 @@
               "<td>" + val.name + "</td>" +
               "<td>" + val.start_date + "</td>" +
               "<td>" + val.start_time + "</td>" +
-              "<td>" + self.secondsToTime(val.duration) + "</td>" +
+              "<td>" + self.secondsToTime(val.duration, 'duration') + "</td>" +
               "<td>" + (val.distance / 1000).toFixed(2) + "</td>" +
               "</tr>";
           });
@@ -657,8 +663,8 @@
             html += '<tr class="selectable" value="_' + val.start_location_id + '">' +
               "<td>" + val.count_lid + "</td>" +
               "<td>" + val.name + "</td>" +
-              "<td>" + val.end_time + "</td>" +
-              "<td>" + self.secondsToTime(val.duration) + "</td>" +
+              "<td>" + self.secondsToTime(val.end_time) + "</td>" +
+              "<td>" + self.secondsToTime(val.duration, 'duration') + "</td>" +
               "<td>" + (val.distance / 1000).toFixed(2) + "</td>" +
               "</tr>";
           });
@@ -684,7 +690,7 @@
               "<td>" + val.name + "</td>" +
               "<td>" + val.end_date + "</td>" +
               "<td>" + val.end_time + "</td>" +
-              "<td>" + self.secondsToTime(val.duration) + "</td>" +
+              "<td>" + self.secondsToTime(val.duration, 'duration') + "</td>" +
               "<td>" + (val.distance / 1000).toFixed(2) + "</td>" +
               "</tr>";
           });
