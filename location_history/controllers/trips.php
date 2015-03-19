@@ -37,7 +37,7 @@ $start_aggregate = $db->rawQuery($query, null, false);
 
     /* all
     –––––––––––––––––––––––––––––– */
-$query = "SELECT t.end_location_id, l.name, t.start_date, t.duration, t.distance
+$query = "SELECT t.end_location_id, l.name, DATE(t.start_date) AS start_date, TIME(t.start_date) AS start_time, t.duration, t.distance
 FROM trip t, location l,
 	(SELECT COUNT(t.end_location_id) AS count_lid, t.end_location_id
 	FROM trip t
@@ -78,7 +78,7 @@ $end_aggregate = $db->rawQuery($query, null, false);
 
     /* all
     –––––––––––––––––––––––––––––– */
-$query = "SELECT t.start_location_id, l.name, t.end_date, t.duration, t.distance
+$query = "SELECT t.start_location_id, l.name, DATE(t.end_date) AS end_date, TIME(t.end_date) AS end_time, t.duration, t.distance
 FROM trip t, location l,
 	(SELECT COUNT(t.start_location_id) AS count_lid, t.start_location_id
 	FROM trip t
@@ -93,6 +93,8 @@ AND t.end_location_id = " . htmlspecialchars($location_id);
 include '__build_query.php';
 $query .= " ORDER BY c.count_lid DESC, t.start_location_id, t.end_date ASC";
 $end_all = $db->rawQuery($query, null, false);
+
+
 
 
 

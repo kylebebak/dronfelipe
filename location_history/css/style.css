@@ -88,11 +88,33 @@ body {
 	width: 800px;
 }
 
-.resource-window h3 {
-	margin-top: .25em;
-	margin-bottom: .75em;
+.resource-window div.header {
+	margin-top: -10px;
+	margin-bottom: 10px;
+	width: 800px;
 }
 
+.resource-window div.box {
+	display: inline-block;
+}
+
+.resource-window div#select {
+	position: absolute;
+	right: 2%;
+	top: 7%;
+}
+
+.resource-window select {
+	width: 125px;
+}
+
+.resource-window tr.selectable {
+	cursor: pointer;
+}
+
+.resource-window tr.selectable:hover {
+	background-color: #eeeeee;
+}
 
 
 

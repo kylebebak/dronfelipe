@@ -38,7 +38,7 @@
 
     init: function() {
 
-      this.defaultLimit = '25';
+      this.defaultLimit = '30';
       this.zoomFromSearch = 15;
       this.highlightedMarkerID = '';
 
@@ -498,6 +498,8 @@
     },
 
 
+
+
     renderResourceWindow: {
 
       visits: function() {
@@ -551,33 +553,148 @@
 
           var json = $.parseJSON(data);
 
+          // add header html to resource window
+          self.resourceWindow.html(
+            '<div class="header"><div class="box" id="header"><h3>average trips starting from this location</h3></div>' +
+            '<div class="box" id="select"><select name="" id="">' +
+              '<option value="start_aggregate">average trips starting from this location</option>' +
+              '<option value="start_all">all trips starting from this location</option>' +
+              '<option value="end_aggregate">average trips ending at this location</option>' +
+              '<option value="end_all">all trips ending at this location</option>' +
+            '</select></div></div>');
 
 
-          var html = '<h3 id="trips-header">average trips departing from this location</h3>';
-          html += "<table><tr>" +
+          // add event listener to select dropdown, and trigger it immediately
+          self.resourceWindow.find("select").on("change", function() {
+            var option = $(this).find(":selected");
+
+            self.resourceWindow.find("h3").text(option.text());
+            var html = self.renderResourceWindow.renderTripsTable[option.val()](json);
+
+            // remove and reinsert table, and add click listener to any tr element
+            self.resourceWindow.find("table").remove();
+            self.resourceWindow.append(html).find("table").on("click", "tr.selectable", function() {
+              var val = $(this).attr("value");
+              if (self.markers[val]) {
+                self.openMarker(self.markers[val]);
+                self.searchOptions.select2("val", val);
+              }
+            });
+
+          }).change();
+
+        });
+      },
+
+
+
+      renderTripsTable: {
+
+        start_aggregate: function(json) {
+          var self = LH;
+
+          var html = "<table><tr>" +
             "<th>trips</th>" +
             "<th>destination</th>" +
-            "<th>duration</th>" +
             "<th>departure</th>" +
+            "<th>duration</th>" +
             "<th>distance (km)</th>" +
             "</tr>";
 
           $.each(json.start_aggregate, function(index, val) {
-            html += '<tr value="' + val.end_location_id + '">' +
+            html += '<tr class="selectable" value="_' + val.end_location_id + '">' +
               "<td>" + val.count_lid + "</td>" +
               "<td>" + val.name + "</td>" +
-              "<td>" + self.secondsToTime(val.duration) + "</td>" +
               "<td>" + val.start_time + "</td>" +
+              "<td>" + self.secondsToTime(val.duration) + "</td>" +
               "<td>" + (val.distance / 1000).toFixed(2) + "</td>" +
               "</tr>";
           });
 
           html += "</table>";
+          return html;
+        },
 
 
-          self.resourceWindow.html(html);
-        });
+        start_all: function(json) {
+          var self = LH;
+
+          var html = "<table><tr>" +
+            "<th>destination</th>" +
+            "<th>date</th>" +
+            "<th>departure</th>" +
+            "<th>duration</th>" +
+            "<th>distance (km)</th>" +
+            "</tr>";
+
+          $.each(json.start_all, function(index, val) {
+            html += '<tr class="selectable" value="_' + val.end_location_id + '">' +
+              "<td>" + val.name + "</td>" +
+              "<td>" + val.start_date + "</td>" +
+              "<td>" + val.start_time + "</td>" +
+              "<td>" + self.secondsToTime(val.duration) + "</td>" +
+              "<td>" + (val.distance / 1000).toFixed(2) + "</td>" +
+              "</tr>";
+          });
+
+          html += "</table>";
+          return html;
+        },
+
+
+        end_aggregate: function(json) {
+          var self = LH;
+
+          var html = "<table><tr>" +
+            "<th>trips</th>" +
+            "<th>starting location</th>" +
+            "<th>arrival</th>" +
+            "<th>duration</th>" +
+            "<th>distance (km)</th>" +
+            "</tr>";
+
+          $.each(json.end_aggregate, function(index, val) {
+            html += '<tr class="selectable" value="_' + val.start_location_id + '">' +
+              "<td>" + val.count_lid + "</td>" +
+              "<td>" + val.name + "</td>" +
+              "<td>" + val.end_time + "</td>" +
+              "<td>" + self.secondsToTime(val.duration) + "</td>" +
+              "<td>" + (val.distance / 1000).toFixed(2) + "</td>" +
+              "</tr>";
+          });
+
+          html += "</table>";
+          return html;
+        },
+
+
+        end_all: function(json) {
+          var self = LH;
+
+          var html = "<table><tr>" +
+            "<th>starting location</th>" +
+            "<th>date</th>" +
+            "<th>arrival</th>" +
+            "<th>duration</th>" +
+            "<th>distance (km)</th>" +
+            "</tr>";
+
+          $.each(json.end_all, function(index, val) {
+            html += '<tr class="selectable" value="_' + val.start_location_id + '">' +
+              "<td>" + val.name + "</td>" +
+              "<td>" + val.end_date + "</td>" +
+              "<td>" + val.end_time + "</td>" +
+              "<td>" + self.secondsToTime(val.duration) + "</td>" +
+              "<td>" + (val.distance / 1000).toFixed(2) + "</td>" +
+              "</tr>";
+          });
+
+          html += "</table>";
+          return html;
+        }
+
       },
+
 
       global: function() {
         var self = LH;

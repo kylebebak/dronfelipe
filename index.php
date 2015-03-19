@@ -72,11 +72,11 @@
 </ul>
 
 <ul>
-	<li><p><span class="content-item">Location History</span> - Unless you opted out of location services when you first turned on your phone, Google (or Apple or Microsoft) is probably <a href="http://www.howtogeek.com/195647/googles-location-history-is-still-recording-your-every-move/">tracking your location</a>, once a minute and accurate to 5 or 10 meters. Google used to have an API for accessing this data, but now the best you can do is download your raw location history for a range of dates as KML or JSON. I did this, ran a clustering algorithm similar to DBSCAN on the data to create grouped_point, location and trip instances, and put them in a MySQL database.</p>
+	<li><p><span class="content-item">Location History</span> - Unless you've opted out of location services on your phone, Google (or Apple or Microsoft) is probably <a href="http://www.howtogeek.com/195647/googles-location-history-is-still-recording-your-every-move/">tracking your location</a>, in Google's case once a minute and accurate to 5 or 10 meters. There used to be an API for accessing this data, but now the best you can do is download your raw location history for a range of dates as KML or JSON. I did this, ran a clustering algorithm similar to DBSCAN on the data to create grouped_point, location and trip instances, and put them in a MySQL database.</p>
 
 	<p>When run on my location data during the last year and a half, this process turned up 4400 grouped points (instances where I'd been stationary somewhere for more than 6 minutes) that correspond to 750 unique locations. Trips are the sequences of moving points that occur between grouped points. The data has been a lot of fun to explore. Probed with simple queries it can answer interesting aggregate questions, like where are the top five places I spend time on Saturdays, or, during the last year, at what time on average have I left work on each of the different weekdays (Friday is a lot earlier than the rest).</p>
 
-	<p>As soon as I can build a front end for this data I'm going to make it available <a href="location_history">here</a>, as it doesn't reveal anything that makes me uncomfortable or that people don't already know. The ease with which this clustering can be done makes me wonder why Google doesn't offer a better location history UI/API.</p></li>
+	<p>As soon as I can build a front end for this data I'm going to make it available <a href="location_history">here</a>, as it doesn't reveal anything that makes me uncomfortable.</p></li>
 </ul>
 
 

@@ -39,7 +39,7 @@
 		<li>
 			<form class="navbar-form" action="#">
 			  <div class="form-group">
-			    <input id="limit" type="text" class="form-control" value="25" placeholder="limit" name="limit" id="limit">
+			    <input id="limit" type="text" class="form-control" value="30" placeholder="limit" name="limit" id="limit">
 			  </div>
 			</form>
 		</li>
