@@ -4,7 +4,7 @@ include_once '__parse_query.php';
 
 
 
-// this cannot return meaningful results with a location id
+// this cannot return meaningful results without a location id
 if (!$_POST['location_id']) {
 	return;
 }

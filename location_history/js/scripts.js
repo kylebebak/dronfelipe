@@ -92,7 +92,6 @@
       this.marker = '';
       this.maxDuration = '';
       this.global = {};
-      this.visits = '';
       this.resourceWindowAnimating = false;
     },
 
@@ -370,6 +369,7 @@
           '<div id="button"><button>update</button></div>' +
           '<div value="visits" class="resource">visits</div>' +
           '<div value="graph" class="resource">graph</div>' +
+          '<div value="trips" class="resource">trips</div>' +
           '<div value="global" class="resource">global</div>' +
         '</form>' +
         '</div>';
@@ -461,6 +461,8 @@
       // add click listener for displaying resources
       $('.info-window .resource').on('click', function() {
 
+
+        // ensure that click listener is only available if there are no animations in progress. if click listener is available, the sequence of events is as follows: if a resource window is currently open, it is closed. then, if the resource requested is different from the previous resource, the method for rendering the content of this resource window is called. finally, and finally, the resource window for this new resource is opened
         if (!self.resourceWindowAnimating) {
           self.resourceWindowAnimating = true;
 
@@ -497,21 +499,22 @@
 
 
     renderResourceWindow: {
+
       visits: function() {
-        var self = LH,
-          visits = "";
+        var self = LH;
 
         return $.post('controllers/visits.php', self.query, function(data) {
 
           var json = $.parseJSON(data);
 
-          visits += '<p id="visits-header">avg arrival: ' + self.secondsToTime(json.mean_times.start) + ", ";
-          visits += "avg departure: " + self.secondsToTime(json.mean_times.end) + "</p>";
+          var html = '<p id="visits-header">avg arrival: ' + self.secondsToTime(json.mean_times.start) + ", ";
+          html += "avg departure: " + self.secondsToTime(json.mean_times.end) + "</p>";
+
           $.each(json.results, function(index, val) {
-            visits += "<p>" + val.start_date + ", <strong>duration:</strong> " + self.secondsToTime(val.duration) + "</p>"
+            html += "<p>" + val.start_date + ", <strong>duration:</strong> " + self.secondsToTime(val.duration) + "</p>"
           });
 
-          self.resourceWindow.html(visits);
+          self.resourceWindow.html(html);
         });
       },
 
@@ -538,6 +541,41 @@
             interpolate: "monotone"
           });
 
+        });
+      },
+
+      trips: function() {
+        var self = LH;
+
+        return $.post('controllers/trips.php', self.query, function(data) {
+
+          var json = $.parseJSON(data);
+
+
+
+          var html = '<h3 id="trips-header">average trips departing from this location</h3>';
+          html += "<table><tr>" +
+            "<th>trips</th>" +
+            "<th>destination</th>" +
+            "<th>duration</th>" +
+            "<th>departure</th>" +
+            "<th>distance (km)</th>" +
+            "</tr>";
+
+          $.each(json.start_aggregate, function(index, val) {
+            html += '<tr value="' + val.end_location_id + '">' +
+              "<td>" + val.count_lid + "</td>" +
+              "<td>" + val.name + "</td>" +
+              "<td>" + self.secondsToTime(val.duration) + "</td>" +
+              "<td>" + val.start_time + "</td>" +
+              "<td>" + (val.distance / 1000).toFixed(2) + "</td>" +
+              "</tr>";
+          });
+
+          html += "</table>";
+
+
+          self.resourceWindow.html(html);
         });
       },
 

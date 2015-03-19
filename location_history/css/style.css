@@ -84,6 +84,17 @@ body {
 	font-weight: bold;
 }
 
+.resource-window table {
+	width: 800px;
+}
+
+.resource-window h3 {
+	margin-top: .25em;
+	margin-bottom: .75em;
+}
+
+
+
 
 
 
@@ -106,9 +117,9 @@ body {
 	display: inline-block;
 	border: 2px solid gray;
 	border-radius: 2px;
-	padding: 0 10px 3px;
+	padding: 0 9px 3px;
 	background: #eeeeee;
-	margin-left: 75px;
+	margin-left: 58px;
 	cursor: pointer;
 }
 
