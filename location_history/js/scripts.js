@@ -515,12 +515,24 @@
 
           var json = $.parseJSON(data);
 
-          var html = '<p id="visits-header">avg arrival: ' + self.secondsToTime(json.mean_times.start) + ", ";
-          html += "avg departure: " + self.secondsToTime(json.mean_times.end) + "</p>";
+          var html = '<h4 id="visits-header">average arrival to this location: ' + self.secondsToTime(json.mean_times.start) + "<br>" +
+          "average departure from this location: " + self.secondsToTime(json.mean_times.end) + "</h4>";
+
+          html += '<table id="visits-table"><tr>' +
+            "<th>date</th>" +
+            "<th>arrival</th>" +
+            "<th>duration</th>" +
+            "</tr>";
 
           $.each(json.results, function(index, val) {
-            html += "<p>" + val.start_date + ", <strong>duration:</strong> " + self.secondsToTime(val.duration, 'duration') + "</p>"
+            html += '<tr>' +
+              "<td>" + val.start_date + "</td>" +
+              "<td>" + val.start_time + "</td>" +
+              "<td>" + self.secondsToTime(val.duration, 'duration') + "</td>" +
+              "</tr>";
           });
+
+          html += '</table>';
 
           self.resourceWindow.html(html);
         });
@@ -599,7 +611,7 @@
         start_aggregate: function(json) {
           var self = LH;
 
-          var html = "<table><tr>" +
+          var html = '<table id="trips-table"><tr>' +
             "<th>trips</th>" +
             "<th>destination</th>" +
             "<th>departure</th>" +
@@ -625,7 +637,7 @@
         start_all: function(json) {
           var self = LH;
 
-          var html = "<table><tr>" +
+          var html = '<table id="trips-table"><tr>' +
             "<th>destination</th>" +
             "<th>date</th>" +
             "<th>departure</th>" +
@@ -651,7 +663,7 @@
         end_aggregate: function(json) {
           var self = LH;
 
-          var html = "<table><tr>" +
+          var html = '<table id="trips-table"><tr>' +
             "<th>trips</th>" +
             "<th>starting location</th>" +
             "<th>arrival</th>" +
@@ -677,7 +689,7 @@
         end_all: function(json) {
           var self = LH;
 
-          var html = "<table><tr>" +
+          var html = '<table id="trips-table"><tr>' +
             "<th>starting location</th>" +
             "<th>date</th>" +
             "<th>arrival</th>" +

@@ -84,8 +84,12 @@ body {
 	font-weight: bold;
 }
 
-.resource-window table {
+.resource-window table#trips-table {
 	width: 800px;
+}
+
+.resource-window table#visits-table {
+	width: 500px;
 }
 
 .resource-window div.header {

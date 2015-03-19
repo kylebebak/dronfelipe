@@ -14,7 +14,7 @@ $location_id = $_POST['location_id'];
 
 // visits for location
 $query = "SELECT
-	start_date, TIME_TO_SEC(TIME(start_date)) as start_time, TIME_TO_SEC(TIME(end_date)) as end_time, duration
+	DATE(gp.start_date) as start_date, TIME(gp.start_date) as start_time, TIME_TO_SEC(gp.start_date) as start_time_sec, TIME_TO_SEC(gp.end_date) as end_time_sec, duration
 	FROM grouped_point gp
 	WHERE location_id = " . htmlspecialchars($location_id);
 
@@ -31,8 +31,8 @@ $start_times = array();
 $end_times = array();
 
 foreach($results as $result) {
-	$start_times[] = $result['start_time'];
-	$end_times[] = $result['end_time'];
+	$start_times[] = $result['start_time_sec'];
+	$end_times[] = $result['end_time_sec'];
 }
 
 
