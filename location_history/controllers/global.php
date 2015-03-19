@@ -21,7 +21,7 @@ $visits = $db->rawQuery($query, null, false);
 
 // trips
 $query = "SELECT
-	COUNT(t.id) AS num, SUM(t.duration) AS duration
+	COUNT(t.id) AS num, SUM(t.duration) AS duration, SUM(t.distance) AS distance
 	FROM trip t
 	WHERE 1 = 1";
 

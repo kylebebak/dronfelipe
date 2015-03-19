@@ -26,8 +26,6 @@ FROM trip t, location l
 WHERE t.end_location_id = l.id
 AND t.start_location_id = " . htmlspecialchars($location_id);
 
-
-// CONSTRUCT WHERE CLAUSE
 include '__build_query.php';
 $query .= " GROUP BY t.end_location_id HAVING count_lid > 1 ORDER BY count_lid DESC";
 $start_aggregate = $db->rawQuery($query, null, false);
@@ -41,18 +39,18 @@ $query = "SELECT t.end_location_id, l.name, DATE(t.start_date) AS start_date, TI
 FROM trip t, location l,
 	(SELECT COUNT(t.end_location_id) AS count_lid, t.end_location_id
 	FROM trip t
-	WHERE t.start_location_id = " . htmlspecialchars($location_id) . "
-	GROUP BY t.end_location_id) AS c
+	WHERE t.start_location_id = " . htmlspecialchars($location_id);
+
+include '__build_query.php';
+
+$query .= " GROUP BY t.end_location_id) AS c
 WHERE t.end_location_id = l.id
 AND t.end_location_id = c.end_location_id
 AND t.start_location_id = " . htmlspecialchars($location_id);
 
-
-// CONSTRUCT WHERE CLAUSE
 include '__build_query.php';
 $query .= " ORDER BY c.count_lid DESC, t.end_location_id, t.start_date ASC";
 $start_all = $db->rawQuery($query, null, false);
-
 
 
 
@@ -67,8 +65,6 @@ FROM trip t, location l
 WHERE t.start_location_id = l.id
 AND t.end_location_id = " . htmlspecialchars($location_id);
 
-
-// CONSTRUCT WHERE CLAUSE
 include '__build_query.php';
 $query .= " GROUP BY t.start_location_id HAVING count_lid > 1 ORDER BY count_lid DESC";
 $end_aggregate = $db->rawQuery($query, null, false);
@@ -82,14 +78,15 @@ $query = "SELECT t.start_location_id, l.name, DATE(t.end_date) AS end_date, TIME
 FROM trip t, location l,
 	(SELECT COUNT(t.start_location_id) AS count_lid, t.start_location_id
 	FROM trip t
-	WHERE t.end_location_id = " . htmlspecialchars($location_id) . "
-	GROUP BY t.start_location_id) AS c
+	WHERE t.end_location_id = " . htmlspecialchars($location_id);
+
+include '__build_query.php';
+
+$query .= " GROUP BY t.start_location_id) AS c
 WHERE t.start_location_id = l.id
 AND t.start_location_id = c.start_location_id
 AND t.end_location_id = " . htmlspecialchars($location_id);
 
-
-// CONSTRUCT WHERE CLAUSE
 include '__build_query.php';
 $query .= " ORDER BY c.count_lid DESC, t.start_location_id, t.end_date ASC";
 $end_all = $db->rawQuery($query, null, false);

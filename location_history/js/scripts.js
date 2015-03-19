@@ -728,6 +728,7 @@
               '<ul>' +
                 '<li>' + self.global.trips.num + '</li>' +
                 '<li>' + (self.global.trips.duration / 3600).toFixed(0) + ' hours</li>' +
+                '<li>' + (self.global.trips.distance / 1000).toFixed(0) + ' km</li>' +
               '</ul>' +
             '</li>' +
           '</ul>');

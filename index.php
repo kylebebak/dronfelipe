@@ -69,14 +69,12 @@
 
 <ul>
 	<li><span class="content-item">Tortas</span> - Pon tu propio changarro de tortas. Genera un <a href="tortas">menú</a> digno de los mejores puestos, sumamente variado, internacional y sin sentido alguno.</li>
-</ul>
 
-<ul>
-	<li><p><span class="content-item">Location History</span> - Unless you've opted out of location services on your phone, Google (or Apple or Microsoft) is probably <a href="http://www.howtogeek.com/195647/googles-location-history-is-still-recording-your-every-move/">tracking your location</a>, in Google's case once a minute and accurate to 5 or 10 meters. There used to be an API for accessing this data, but now the best you can do is download your raw location history for a range of dates as KML or JSON. I did this, ran a clustering algorithm similar to DBSCAN on the data to create grouped_point, location and trip instances, and put them in a MySQL database.</p>
+	<li><p><span class="content-item">Location History</span> - Unless you've opted out of location services on your phone, Google (or Apple or Microsoft) is probably <a href="http://www.howtogeek.com/195647/googles-location-history-is-still-recording-your-every-move/">tracking your location</a>, in Google's case once a minute and accurate to 5 or 10 meters. There used to be an API for accessing this data, but now the best you can do is download your raw location history for a range of dates as KML or JSON. I did this, ran a clustering algorithm similar to DBSCAN on the data to create visit, location and trip instances, and put them in a MySQL database.</p>
 
-	<p>When run on my location data during the last year and a half, this process turned up 4400 grouped points (instances where I'd been stationary somewhere for more than 6 minutes) that correspond to 750 unique locations. Trips are the sequences of moving points that occur between grouped points. The data has been a lot of fun to explore. Probed with simple queries it can answer interesting aggregate questions, like where are the top five places I spend time on Saturdays, or, during the last year, at what time on average have I left work on each of the different weekdays (Friday is a lot earlier than the rest).</p>
+	<p>When run on my location data during the last year and a half, this process turned up 4400 visits (clusters of points where I'd been stationary somewhere for more than 6 minutes) that correspond to 750 unique locations. Trips are the sequences of moving points that occur between visits. The data has been a lot of fun to explore. Probed with simple queries it can answer interesting aggregate questions, like where are the top five places I spend time on Saturdays, or, during the last year, at what time on average have I left work on each of the different weekdays.</p>
 
-	<p>As soon as I can build a front end for this data I'm going to make it available <a href="location_history">here</a>, as it doesn't reveal anything that makes me uncomfortable.</p></li>
+	<p>I built a front end for this data using the Google Maps API and a bunch of plugins. The data doesn't reveal anything that makes me uncomfortable, so I've made it available <a href="location_history">here</a>.</p></li>
 </ul>
 
 
@@ -85,6 +83,7 @@
 
 <ul>
 	<li>Coming soon</li>
+
 	<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum veniam ipsa optio dolores exercitationem, deserunt necessitatibus voluptates architecto dolore, pariatur incidunt, quos sequi harum. Itaque labore a, quisquam corporis eveniet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. At quae, rem voluptate labore, ex reiciendis impedit culpa cum quam dolor, maxime corporis recusandae? Blanditiis accusantium placeat quidem illum rem obcaecati? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi illum corrupti mollitia, asperiores et laudantium vero delectus voluptatem, qui repudiandae temporibus explicabo! Nobis praesentium rerum, nam facere dignissimos ullam debitis! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus maiores nam deleniti quaerat consectetur tempora veniam cum voluptatibus laborum praesentium, fuga sint ducimus vero quia quam nostrum ea voluptate nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam natus officiis perspiciatis dolore, facilis esse sunt? Impedit eos dolores nesciunt ipsum, sit sunt adipisci cupiditate amet, mollitia molestias libero omnis.</li>
 </ul>
 
