@@ -17,7 +17,7 @@
   $('li#weekdays-container select').multiselect({
     enableClickableOptGroups: true,
 
-    // listen for when day picker is closed and assign LH callback to this even. can this listener be registered outside of the "constructor" for the daypicker form?
+    // listen for when day picker is closed and assign LH callback to this event. can this listener be registered outside of the "constructor" for the daypicker form?
     onDropdownHide: function(event) {
       LH.setDayFilter();
     }
@@ -90,6 +90,7 @@
       this.results = '';
       this.markers = {};
       this.marker = '';
+      this.tripLine = '';
       this.maxDuration = '';
       this.global = {};
       this.resourceWindowAnimating = false;
@@ -439,11 +440,12 @@
 
       marker.infowindow.open(self.map, marker);
 
+      // make outermost infowindow container semi-transparent
+      $('div.gm-style-iw').parent().css("opacity", "0.9");
+
       // set values of input elements in form to name and description retrieved from DB. nothing needs to be escaped here, because the val method expects and assigns a string to the input's value attribute. it does not expect or insert html into the DOM
       $('.info-window input#name').val(marker.data.name);
       $('.info-window input#description').val(marker.data.description);
-
-
 
       // add click listener to button in order to post to controller and update fields
       $('.info-window form').on('submit', function(e) {
@@ -501,6 +503,9 @@
       self.marker.infowindow.close();
       self.resourceWindow.attr("value", "");
       self.resourceWindow.fadeOut();
+      if (self.tripLine) {
+        self.tripLine.setMap(null);
+      }
     },
 
 
@@ -579,6 +584,7 @@
               '<option value="start_all">all trips starting from this location</option>' +
               '<option value="end_aggregate">average trips ending at this location</option>' +
               '<option value="end_all">all trips ending at this location</option>' +
+              '<option value="start_end_all">all trips in chronological order for this location</option>' +
             '</select></div></div>');
 
 
@@ -592,18 +598,76 @@
             // remove and reinsert table, and add click listener to any tr element
             self.resourceWindow.find("table").remove();
             self.resourceWindow.append(html).find("table").on("click", "tr.selectable", function() {
-              var val = $(this).attr("value");
-              if (self.markers[val]) {
-                self.openMarker(self.markers[val]);
-                self.searchOptions.select2("val", val);
+
+              self.renderResourceWindow.setTripLineParameters($(this).attr("data-sid"), $(this).attr("data-eid"));
+
+              if (self.markers[self.tripLineParams.val]) {
+                self.openMarker(self.markers[self.tripLineParams.val]);
+                self.searchOptions.select2("val", self.tripLineParams.val);
+              }
+            })
+            .on("mouseenter", "tr.selectable", function() {
+
+              self.renderResourceWindow.setTripLineParameters($(this).attr("data-sid"), $(this).attr("data-eid"));
+
+              if (self.tripLine) {
+                self.tripLine.setMap(null);
+              }
+
+              if (self.tripLineParams.round) {
+                self.tripLine = new google.maps.Circle({
+                  center: self.marker.position,
+                  radius: 800,
+                  strokeColor: self.tripLineParams.color,
+                  strokeOpacity: 1.0,
+                  strokeWeight: 4,
+                });
+                self.tripLine.setMap(self.map);
+              }
+
+              else if (self.markers[self.tripLineParams.val]) {
+                self.tripLine = new google.maps.Polyline({
+                  path: [self.marker.position, self.markers[self.tripLineParams.val].position],
+                  geodesic: true,
+                  strokeColor: self.tripLineParams.color,
+                  strokeOpacity: 1.0,
+                  fillColor: '#FFFFFF',
+                  fillOpacity: 0.0,
+                  strokeWeight: 4
+                });
+                self.tripLine.setMap(self.map);
               }
             });
 
+          // if this event is not triggered, trips resource window will not load content when it is first opened
           }).change();
 
         });
       },
 
+      setTripLineParameters: function(sid, eid) {
+        var self = LH,
+          val,
+            color,
+              mid = String(self.marker.data.id);
+
+        self.tripLineParams = {};
+
+        if (sid === eid) {
+          val = mid;
+          color = '#FF00FF';
+          self.tripLineParams.round = "true";
+        } else if (sid === mid) {
+          val = eid;
+          color = '#00FF00';
+        } else if (eid === mid) {
+          val = sid;
+          color = '#0000FF';
+        }
+
+        self.tripLineParams.val = "_" + val;
+        self.tripLineParams.color = color;
+      },
 
 
       renderTripsTable: {
@@ -620,7 +684,7 @@
             "</tr>";
 
           $.each(json.start_aggregate, function(index, val) {
-            html += '<tr class="selectable" value="_' + val.end_location_id + '">' +
+            html += '<tr class="selectable" data-sid="' + self.marker.data.id + '" data-eid="' + val.end_location_id + '">' +
               "<td>" + val.count_lid + "</td>" +
               "<td>" + val.name + "</td>" +
               "<td>" + self.secondsToTime(val.start_time) + "</td>" +
@@ -646,7 +710,7 @@
             "</tr>";
 
           $.each(json.start_all, function(index, val) {
-            html += '<tr class="selectable" value="_' + val.end_location_id + '">' +
+            html += '<tr class="selectable" data-sid="' + self.marker.data.id + '" data-eid="' + val.end_location_id + '">' +
               "<td>" + val.name + "</td>" +
               "<td>" + val.start_date + "</td>" +
               "<td>" + val.start_time + "</td>" +
@@ -672,7 +736,7 @@
             "</tr>";
 
           $.each(json.end_aggregate, function(index, val) {
-            html += '<tr class="selectable" value="_' + val.start_location_id + '">' +
+            html += '<tr class="selectable" data-sid="' + val.start_location_id + '" data-eid="' + self.marker.data.id + '">' +
               "<td>" + val.count_lid + "</td>" +
               "<td>" + val.name + "</td>" +
               "<td>" + self.secondsToTime(val.end_time) + "</td>" +
@@ -698,10 +762,37 @@
             "</tr>";
 
           $.each(json.end_all, function(index, val) {
-            html += '<tr class="selectable" value="_' + val.start_location_id + '">' +
+            html += '<tr class="selectable" data-sid="' + val.start_location_id + '" data-eid="' + self.marker.data.id + '">' +
               "<td>" + val.name + "</td>" +
               "<td>" + val.end_date + "</td>" +
               "<td>" + val.end_time + "</td>" +
+              "<td>" + self.secondsToTime(val.duration, 'duration') + "</td>" +
+              "<td>" + (val.distance / 1000).toFixed(2) + "</td>" +
+              "</tr>";
+          });
+
+          html += "</table>";
+          return html;
+        },
+
+        start_end_all: function(json) {
+          var self = LH;
+
+          var html = '<table id="trips-table"><tr>' +
+            "<th>starting location</th>" +
+            "<th>ending location</th>" +
+            "<th>date</th>" +
+            "<th>departure</th>" +
+            "<th>duration</th>" +
+            "<th>distance (km)</th>" +
+            "</tr>";
+
+          $.each(json.start_end_all, function(index, val) {
+            html += '<tr class="selectable" data-sid="' + val.start_location_id + '" data-eid="' + val.end_location_id + '">' +
+              "<td>" + val.start_name + "</td>" +
+              "<td>" + val.end_name + "</td>" +
+              "<td>" + val.start_date + "</td>" +
+              "<td>" + val.start_time + "</td>" +
               "<td>" + self.secondsToTime(val.duration, 'duration') + "</td>" +
               "<td>" + (val.distance / 1000).toFixed(2) + "</td>" +
               "</tr>";

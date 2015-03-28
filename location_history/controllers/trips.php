@@ -9,7 +9,7 @@ if (!$_POST['location_id']) {
 	return;
 }
 
-$location_id = $_POST['location_id'];
+$location_id = htmlspecialchars($_POST['location_id']);
 
 
 
@@ -24,7 +24,7 @@ $location_id = $_POST['location_id'];
 $query = "SELECT COUNT(t.end_location_id) AS count_lid, t.end_location_id, l.name, AVG(t.duration) AS duration, 0 AS start_time, AVG(t.distance) AS distance
 FROM trip t, location l
 WHERE t.end_location_id = l.id
-AND t.start_location_id = " . htmlspecialchars($location_id);
+AND t.start_location_id = " . $location_id;
 
 include '__build_query.php';
 $query .= " GROUP BY t.end_location_id HAVING count_lid > 1 ORDER BY count_lid DESC";
@@ -39,14 +39,14 @@ $query = "SELECT t.end_location_id, l.name, DATE(t.start_date) AS start_date, TI
 FROM trip t, location l,
 	(SELECT COUNT(t.end_location_id) AS count_lid, t.end_location_id
 	FROM trip t
-	WHERE t.start_location_id = " . htmlspecialchars($location_id);
+	WHERE t.start_location_id = " . $location_id;
 
 include '__build_query.php';
 
 $query .= " GROUP BY t.end_location_id) AS c
 WHERE t.end_location_id = l.id
 AND t.end_location_id = c.end_location_id
-AND t.start_location_id = " . htmlspecialchars($location_id);
+AND t.start_location_id = " . $location_id;
 
 include '__build_query.php';
 $query .= " ORDER BY c.count_lid DESC, t.end_location_id, t.start_date ASC";
@@ -63,7 +63,7 @@ $start_all = $db->rawQuery($query, null, false);
 $query = "SELECT COUNT(t.start_location_id) AS count_lid, t.start_location_id, l.name, AVG(t.duration) AS duration, 0 AS end_time, AVG(t.distance) AS distance
 FROM trip t, location l
 WHERE t.start_location_id = l.id
-AND t.end_location_id = " . htmlspecialchars($location_id);
+AND t.end_location_id = " . $location_id;
 
 include '__build_query.php';
 $query .= " GROUP BY t.start_location_id HAVING count_lid > 1 ORDER BY count_lid DESC";
@@ -78,18 +78,39 @@ $query = "SELECT t.start_location_id, l.name, DATE(t.end_date) AS end_date, TIME
 FROM trip t, location l,
 	(SELECT COUNT(t.start_location_id) AS count_lid, t.start_location_id
 	FROM trip t
-	WHERE t.end_location_id = " . htmlspecialchars($location_id);
+	WHERE t.end_location_id = " . $location_id;
 
 include '__build_query.php';
 
 $query .= " GROUP BY t.start_location_id) AS c
 WHERE t.start_location_id = l.id
 AND t.start_location_id = c.start_location_id
-AND t.end_location_id = " . htmlspecialchars($location_id);
+AND t.end_location_id = " . $location_id;
 
 include '__build_query.php';
 $query .= " ORDER BY c.count_lid DESC, t.start_location_id, t.end_date ASC";
 $end_all = $db->rawQuery($query, null, false);
+
+
+
+
+
+
+/* all trips starting at and ending at this location
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+$query = "SELECT ls.name AS start_name, le.name AS end_name, SQ.* FROM
+(SELECT t.start_location_id, t.end_location_id, DATE(t.start_date) AS start_date, TIME(t.start_date) AS start_time, t.duration, t.distance
+FROM trip t
+WHERE t.start_location_id = " . $location_id . " OR t.end_location_id = " . $location_id;
+
+include '__build_query.php';
+
+$query .= " ORDER BY t.start_date ASC) SQ, location ls, location le
+WHERE ls.id = SQ.start_location_id AND le.id = SQ.end_location_id";
+
+$start_end_all = $db->rawQuery($query, null, false);
+
 
 
 
@@ -136,7 +157,8 @@ echo json_encode(array(
 	"start_aggregate" => $start_aggregate,
 	"start_all" => $start_all,
 	"end_aggregate" => $end_aggregate,
-	"end_all" => $end_all
+	"end_all" => $end_all,
+	"start_end_all" => $start_end_all
 	));
 
 
