@@ -468,7 +468,9 @@
 
       // add click listener for displaying resources
       $('.info-window .resource').on('click', function() {
-
+        if (self.tripLine) {
+          self.tripLine.setMap(null);
+        }
 
         // ensure that click listener is only available if there are no animations in progress. if click listener is available, the sequence of events is as follows: if a resource window is currently open, it is closed. then, if the resource requested is different from the previous resource, the method for rendering the content of this resource window is called. finally, and finally, the resource window for this new resource is opened
         if (!self.resourceWindowAnimating) {
@@ -599,7 +601,7 @@
             self.resourceWindow.find("table").remove();
             self.resourceWindow.append(html).find("table").on("click", "tr.selectable", function() {
 
-              self.renderResourceWindow.setTripLineParameters($(this).attr("data-sid"), $(this).attr("data-eid"));
+              self.renderResourceWindow.setTripLineParams($(this).attr("data-sid"), $(this).attr("data-eid"));
 
               if (self.markers[self.tripLineParams.val]) {
                 self.openMarker(self.markers[self.tripLineParams.val]);
@@ -608,7 +610,7 @@
             })
             .on("mouseenter", "tr.selectable", function() {
 
-              self.renderResourceWindow.setTripLineParameters($(this).attr("data-sid"), $(this).attr("data-eid"));
+              self.renderResourceWindow.setTripLineParams($(this).attr("data-sid"), $(this).attr("data-eid"));
 
               if (self.tripLine) {
                 self.tripLine.setMap(null);
@@ -645,7 +647,7 @@
         });
       },
 
-      setTripLineParameters: function(sid, eid) {
+      setTripLineParams: function(sid, eid) {
         var self = LH,
           val,
             color,
