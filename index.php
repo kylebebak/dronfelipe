@@ -33,14 +33,14 @@
 
 	<ul class="nav navbar-nav navbar-centered">
 
-	  <li><a href="https://github.com/kylebebak/bin">bin</a></li>
+	  <li><a href="https://github.com/kylebebak/notes">notes</a></li>
 	  <li><a href="https://play.google.com/store/apps/details?id=bebak.kyle.tap_it">match it</a></li>
 	  <li><a href="nyt">nyt</a></li>
 
 	</ul>
 
 	<ul class="nav navbar-nav navbar-right">
-	  <li><a href="#bin">#bin</a></li>
+	  <li><a href="#notes">#notes</a></li>
 	  <li><a href="#projects">#projects</a></li>
 	  <li><a href="#Writing">#writing</a></li>
 	</ul>
@@ -52,14 +52,14 @@
 
 
 
-<a class="anchor" name="bin" id="first-anchor"></a>
-<h2>Bin</h2>
+<a class="anchor" name="notes" id="first-anchor"></a>
+<h2>Notes</h2>
 <ul>
-	<li><span class="content-item">Notes</span> - Because accessing your Evernotes takes too long. Notes provides a minimal syntax for manipulating notes from any working directory. You choose the file extension for your notes (the default is <a href="http://daringfireball.net/projects/markdown/">.md</a>), but for convenience Notes' syntax is completely independent of this extension. Combined with an editor like <a href="http://macdown.uranusjr.com/">MacDown</a>, or Sublime Text with a plugin like <a href="https://github.com/SublimeText-Markdown/MarkdownEditing">MarkdownEditing</a>, Notes recovers the formatting goodness you would otherwise lose switching from a note-taking app to plain text. Place your notes directory in your Dropbox or something similar to get syncing, versioning, and access from everywhere. Check it out <a href="https://github.com/kylebebak/bin">here</a>.</li>
+	<li><span class="content-item">Notes</span> - Because accessing your Evernotes takes too long. Notes provides a minimal syntax for manipulating notes from any working directory. You choose the file extension for your notes (the default is <a href="http://daringfireball.net/projects/markdown/">.md</a>), but for convenience Notes' syntax is completely independent of this extension. Combined with an editor like <a href="http://macdown.uranusjr.com/">MacDown</a>, or Sublime Text with a plugin like <a href="https://github.com/SublimeText-Markdown/MarkdownEditing">MarkdownEditing</a>, Notes recovers the formatting goodness you would otherwise lose switching from a note-taking app to plain text. Place your notes directory in your Dropbox or something similar to get syncing, versioning, and access from everywhere. Check it out <a href="https://github.com/kylebebak/notes">here</a>.</li>
 
-	<li><span class="content-item">LSE</span> - A homemade version of the Unix built-in <strong>which</strong> with extra bells and whistles.</li>
+	<li><span class="content-item">LSE</span> - <a href="https://github.com/kylebebak/other-scripts">A homemade version</a> of the Unix built-in <strong>which</strong> with extra bells and whistles.</li>
 
-	<li><span class="content-item">CLists, ComPer, XOR</span> - Python shell scripts for comparing two or more lists (intersection, difference, symmetric difference, and cartesian product), computing combinations and permutations of a list, and computing bitwise XOR of two or more strings.</li>
+	<li><span class="content-item">CLists, ComPer, XOR</span> - <a href="https://github.com/kylebebak/math-scripts">Python shell scripts</a> for comparing two or more lists (intersection, difference, symmetric difference, and cartesian product), computing combinations and permutations of a list, and computing bitwise XOR of two or more strings.</li>
 </ul>
 
 

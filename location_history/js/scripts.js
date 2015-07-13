@@ -51,11 +51,11 @@
 
       // size markers depending on their duration
       this.markerSize = {
-        minScalingFactor: .3,
+        minScalingFactor: 0.3,
         maxW: 44,
         maxH: 70,
         maxWHighlighted: 108
-      }
+      };
 
       if (!google.loader.ClientLocation) {
         this.coords = new google.maps.LatLng(19.378384, -99.170976);
@@ -491,7 +491,7 @@
                 });
               });
             }
-          })
+          });
 
         }
       });
@@ -832,7 +832,7 @@
 
     }
 
-  }
+  };
 
 
 
