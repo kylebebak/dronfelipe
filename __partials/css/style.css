@@ -67,15 +67,3 @@ main li a:hover {
 }
 
 
-
-
-#pronunciation-text {
-	font-size: 1.1em;
-	color: black;
-	font-weight: bold;
-}
-
-.pronunciation-emphasis {
-	font-style: oblique;
-	color: #999;
-}
