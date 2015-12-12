@@ -1,0 +1,10 @@
+h1 {
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+article {
+  font-family: "Garamond", Georgia, Serif;
+  font-size: 1.25em;
+  padding: 0 50px 0;
+}

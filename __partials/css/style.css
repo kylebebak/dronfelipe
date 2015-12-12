@@ -3,6 +3,7 @@ body {
 	width: 750px;
 	margin: auto;
 	margin-bottom: 100px;
+	font-family: font-family: "Garamond", Georgia, Serif;
 }
 
 a#home {
@@ -12,11 +13,6 @@ a#home {
 
 
 
-
-.navbar-left {
-	margin-left: 20px;
-}
-
 .navbar {
 	padding-top: 5px;
 	padding-bottom: 5px;
@@ -24,6 +20,10 @@ a#home {
 	box-shadow: 0 20px 10px -21px;
 	-webkit-box-shadow: 0 20px 10px -21px;
 	-moz-box-shadow: 0 20px 10px -21px;
+}
+
+.navbar-left {
+	margin-left: 20px;
 }
 
 .navbar-centered {
