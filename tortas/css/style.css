@@ -4,7 +4,7 @@ body {
   font-family: 'Helvetica Neue';
 }
 
-/*there are two options for preventing the content of the page from covering the navbar: add padding to the body, add adding margin to an element wrapping the content*/
+/*there are two options for preventing the content of the page from covering the navbar: add padding to the body, or adding margin to an element wrapping the content*/
 
 /*.content {
   margin-top: 125px;
@@ -42,12 +42,11 @@ body {
 
 #home a {
   text-decoration: none;
-  font-size: 1.25em;
+  font-size: 1.5em;
 }
 
 .button-in-line {
   margin-top: 29px;
-  /*margin-top: 3rem;*/
 }
 
 
@@ -55,7 +54,6 @@ body {
 .menu {
   background: #A1EDF7;
   border-radius: 4px;
-  /*border: 1px solid #000;*/
   margin-bottom: 3rem;
   display: none;
 }

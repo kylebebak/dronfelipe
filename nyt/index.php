@@ -1,15 +1,5 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<meta charset=utf-8>
-	<title>dronfelipe/nyt</title>
-	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
-	<!-- last stylesheet loaded takes precedence, which means custom styles are not overwritten by bootstrap -->
-	<link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-
-
+<?php include '../__partials/header.html'; ?>
 
 <?php include '../__partials/navbar-left.html'; ?>
 
@@ -90,21 +80,4 @@
 
 
 
-
-
-
-
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
-<script src="js/scripts.js"></script>
-
-
-</body>
-</html>
-
-
-
+<?php include '../__partials/footer.html'; ?>

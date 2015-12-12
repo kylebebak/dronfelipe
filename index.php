@@ -4,10 +4,12 @@
 	<meta charset=utf-8>
 	<title>dronfelipe</title>
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="__partials/css/style.css">
 	<!-- last stylesheet loaded takes precedence, which means custom styles are not overwritten by bootstrap -->
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
 
 
 

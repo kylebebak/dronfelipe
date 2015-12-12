@@ -3,7 +3,6 @@ body {
 	width: 750px;
 	margin: auto;
 	margin-bottom: 100px;
-	font-family: font-family: "Garamond", Georgia, Serif;
 }
 
 a#home {
@@ -11,9 +10,19 @@ a#home {
 	font-weight: bold;
 }
 
+.dropdown-menu a, main a, p a, .articles a {
+	font-weight: bold;
+	color: #0FA0CE !important;
+	text-decoration: none;
+}
 
+.dropdown-menu a:hover, main a:hover, p a:hover, .articles a:hover {
+	color: black !important;
+	text-decoration: none;
+}
 
 .navbar {
+	font-size: 1.2em;
 	padding-top: 5px;
 	padding-bottom: 5px;
 	background: white;
@@ -34,14 +43,10 @@ a#home {
 	margin-right: 30px;
 }
 
-.navbar-nav.navbar-right li {
-	/*margin-right: 10px;*/
-}
 
 
 
-
-main {
+main, article {
 	font-family: "Garamond", Georgia, Serif;
 	margin-bottom: 100px;
 	font-size: 1.5em;
@@ -52,17 +57,6 @@ main h2 {
 	font-size: 2.25em;
 	margin-top: 1em;
 	margin-bottom: .33em;
-}
-
-main li a {
-	color: #0FA0CE;
-	font-weight: bold;
-	text-decoration: none;
-}
-
-main li a:hover {
-	color: black;
-	text-decoration: none;
 }
 
 

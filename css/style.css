@@ -1,18 +1,4 @@
-body {
-	padding-top: 110px;
-	width: 750px;
-	margin: auto;
-}
-
-
-
-
-a {
-	font-weight: bold;
-}
-
 a#home {
-	font-size: 1.33em;
 	color: #777;
 }
 
@@ -34,28 +20,6 @@ a#first-anchor {
 
 
 
-.navbar-left {
-	margin-left: 20px;
-}
-
-.navbar-centered {
-	margin-left: 150px;
-}
-
-.navbar-right {
-	margin-right: 20px;
-}
-
-.navbar {
-	font-size: 1.2em;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	background: white;
-	box-shadow: 0 20px 10px -21px;
-	-webkit-box-shadow: 0 20px 10px -21px;
-	-moz-box-shadow: 0 20px 10px -21px;
-}
-
 .navbar * a {
 	font-size: 1.1em;
 	font-weight: bold !important;
@@ -72,10 +36,6 @@ a#first-anchor {
 
 
 
-.dropdown-menu a, main a {
-	color: #0FA0CE !important;
-	text-decoration: none;
-}
 
 .dropdown-menu a {
 	margin-top: .5em;
@@ -85,30 +45,12 @@ a#first-anchor {
 	margin-bottom: .5em;
 }
 
-.dropdown-menu a:hover, main a:hover {
-	color: black !important;
-	text-decoration: none;
-}
-
 .dropdown-menu span.menu-item {
 	margin-left: 2em;
 }
 
 
 
-
-main {
-	font-family: "Garamond", Georgia, Serif;
-	margin-bottom: 100px;
-	font-size: 1.5em;
-}
-
-main h2 {
-	font-weight: bold;
-	font-size: 2.25em;
-	margin-top: 1em;
-	margin-bottom: .33em;
-}
 
 main li {
 	margin-bottom: 1em;
@@ -122,15 +64,8 @@ main li {
 	font-weight: bold;
 }
 
-footer {
-	font-weight: bold;
-	text-align: center;
-	padding-bottom: 25px;
-	font-size: 1.1em;
-}
-
 main li.post-item {
-	margin-bottom: .4em;
+	margin-bottom: .5em;
 }
 
 main li.post-item a {

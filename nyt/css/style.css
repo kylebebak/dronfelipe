@@ -1,44 +1,5 @@
-body {
-	padding-top: 80px;
-	width: 750px;
-	margin: auto;
-	margin-bottom: 100px;
-}
-
-a#home {
-	font-size: 1.33em;
-	font-weight: bold;
-}
-
-.navbar-left {
-	margin-left: 20px;
-}
-
-.dropdown-toggle {
-	font-weight: bold;
-	font-size: 1.1em;
-}
-
-
-.navbar {
-	padding-top: 5px;
-	padding-bottom: 5px;
-	background: white;
-	box-shadow: 0 20px 10px -21px;
-	-webkit-box-shadow: 0 20px 10px -21px;
-	-moz-box-shadow: 0 20px 10px -21px;
-}
-
 .pagination {
 	margin: 8px 0px 0px;
-}
-
-.navbar-centered {
-	margin-left: 150px;
-}
-
-.navbar-nav li {
-	margin-right: 20px;
 }
 
 
@@ -69,13 +30,8 @@ a#home {
 }
 
 .articles a {
-	text-decoration: none;
+	font-weight: normal !important;
 }
-
-.articles a:hover {
-	text-decoration: none;
-}
-
 
 img {
 	max-width: 400px;
