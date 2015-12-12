@@ -9,6 +9,7 @@
 
 <section>
 
+  <h3>Motivation</h3>
   <p>
     If you have an Android phone with location services turned on, whenever your phone is connected to the internet it is sending location history records to Google's servers, one per minute. This is true of Microsoft's and Apple's phones as well. These records contain three important fields: <b>latitude</b>, <b>longitude</b>, and <b>timestamp</b>. If your phone is always with you, these records give a very complete picture of where you were at any time in the past.
   </p>
@@ -21,8 +22,9 @@
     This is where clustering comes in. It serves the dual purpose of <b>grouping records into distinct, meaningful entities</b> and <b>greatly compressing the data</b>. First I'll explain the basic idea, and then I'll go into the math to show that the clustering scheme is simple, fast, and predictable.
   </p>
 
+  <h3>Visits, Trips and Locations</h3>
   <p>
-
+    As I noted earlier
   </p>
 
   <p>
