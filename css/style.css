@@ -127,3 +127,11 @@ footer {
 	padding-bottom: 25px;
 	font-size: 1.1em;
 }
+
+main li.post-item a {
+	color: black !important;
+}
+
+main li.post-item a:hover {
+	color: #0FA0CE !important;
+}

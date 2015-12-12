@@ -45,19 +45,9 @@
 <a class="anchor" name="posts" id="first-anchor"></a>
 <h2>Posts</h2>
 
-<!-- read files from  -->
 <ul>
-	<?php $posts = glob('posts/[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]*');
-	foreach (array_reverse($posts) as $post):
-	  $post = pathinfo(explode('/', $post, 2)[1], PATHINFO_FILENAME);
-	  $postname = str_replace('_', ' ', explode('_', $post, 2)[1]);
-	  ?>
-		<li class="post-item">
-	  	<a href="posts?p=<?=$post ?>"><?=$postname ?></a>
-		</li>
-  <?php endforeach; ?>
+	<li>Coming soon</li>
 </ul>
-
 
 
 
