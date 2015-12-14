@@ -97,7 +97,7 @@
   </p>
 
   <p>
-    An aside: it seems plausible that a sequence of unfortunately placed records, moving slowly but surely in one direction, could create a visit containing pairs of points that are separated by a distance much greater than <code>R</code>. I've shown <a href="">here</a> that for the <b><em>most pathological</em></b> sequence of records, the <b>"diameter"</b> of the visit grows as <code>R * log(n)</code>, where <code>n</code> is the number of records in the visit. With real data, these <b>"stretched out"</b> visits occur with vanishing probability. Still, it's reassuring that even in the worst case their growth is slow.
+    An aside: it seems plausible that a sequence of unfortunately placed records, moving slowly but surely in one direction, could create a visit containing pairs of points that are separated by a distance much greater than <code>R</code>. <a href="assets?a=visit_logarithmic_growth">I've shown here</a> that for the <b><em>most pathological</em></b> sequence of records, the <b>"diameter"</b> of the visit grows as <code>R * log(n)</code>, where <code>n</code> is the number of records in the visit. With real data, these <b>"stretched out"</b> visits occur with vanishing probability. Still, it's reassuring that even in the worst case they grow slowly.
   </p>
 
   <p>
