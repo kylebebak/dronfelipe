@@ -1,3 +1,7 @@
+section {
+  font-size: .95em;
+}
+
 h2 {
   font-weight: bold;
   margin-bottom: .75em;
@@ -17,4 +21,13 @@ article {
 
 p {
   margin-bottom: 1em;
+}
+
+li {
+  font-weight: bold;
+  list-style-type: circle;
+}
+
+div.paragraph {
+  margin-bottom: 1.25em;
 }
