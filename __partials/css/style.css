@@ -60,3 +60,16 @@ main h2 {
 }
 
 
+
+ul.formula {
+	border-radius: 10px;
+	background: #DDD;
+	margin: 1em 0 1em;
+	padding-top: .5em;
+	padding-bottom: 1em;
+}
+
+ul.formula li {
+	margin-top: .5em;
+	list-style: none;
+}

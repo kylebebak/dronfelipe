@@ -7,7 +7,6 @@
 </header>
 
 
-<section>
 
   <h3>Motivation</h3>
   <p>
@@ -72,7 +71,7 @@
     <pre style="margin: 0; line-height: 125%">visit <span style="color: #333333">=</span> <span style="color: #007020">None</span>
     <span style="color: #008800; font-weight: bold">for</span> each record <span style="color: #000000; font-weight: bold">in</span> records:
         <span style="color: #888888"># records sorted from oldest to newest</span>
-        <span style="color: #008800; font-weight: bold">if</span> visit <span style="color: #000000; font-weight: bold">and</span> visit<span style="color: #333333">.</span>distance_to(record) <span style="color: #333333">&lt;</span> R:
+        <span style="color: #008800; font-weight: bold">if</span> visit <span style="color: #000000; font-weight: bold">and</span> visit<span style="color: #333333">.</span>distance_to(record) <span style="color: #333333">&lt;</span>= R:
             visit<span style="color: #333333">.</span>add(record)
         <span style="color: #008800; font-weight: bold">else</span>:
             visit <span style="color: #333333">=</span> Visit(record)
@@ -93,15 +92,15 @@
   </p>
 
   <p>
-    Exploiting structure and constraints inherent in the data, we avoid the guesswork used in algorithms like <b>k-means</b>, resulting in a simple, predictable algorithm that produces clusters whose meaning is clear. As for time complexity, any conceivable clustering will have to read each record at least once, so our linear implementation is <em>as fast as possible</em>.
+    Exploiting structure and constraints inherent in the data, we avoid the guesswork used in algorithms like <b>k-means</b>, resulting in a simple, predictable algorithm that produces clusters whose meaning is clear. As for time complexity, any conceivable clustering will have to read each record at least once, so our linear implementation for clustering visits is <em>as fast as possible</em>.
   </p>
 
   <p>
-    An aside: it seems plausible that a sequence of unfortunately placed records, moving slowly but surely in one direction, could create a visit containing pairs of points that are separated by a distance much greater than <code>R</code>. <a href="assets?a=visit_logarithmic_growth">I've shown here</a> that for the <b><em>most pathological</em></b> sequence of records, the <b>"diameter"</b> of the visit grows as <code>R * log(n)</code>, where <code>n</code> is the number of records in the visit. With real data, these <b>"stretched out"</b> visits occur with vanishing probability. Still, it's reassuring that even in the worst case they grow slowly.
+    An aside: it seems plausible that a sequence of unfortunately placed records, moving slowly but surely in one direction, could <b>"stretch out"</b> a visit so that it contains pairs of records that are separated by a distance much greater than <code>R</code>. <a href="assets?a=visit_logarithmic_growth">I've shown here</a> that for the most pathological sequence of records, the <b>"diameter"</b> of the visit grows as <code>R * ln(n)</code>, where <code>n</code> is the number of records in the visit. With real data, stretched visits occur with vanishing probability. Still, it's reassuring that even in the worst case they grow slowly.
   </p>
 
   <p>
-    Another aside: because locations have no temporal component, we can't exploit time in our distance metric to decrease the number of comparisons we make to instantiate them. However, these comparisons are made between visits and locations, not between pairs of records. Comparing 4,400 visits to 750 locations is <b><em>much less expensive</em></b> than doing pairwise comparison between 750,000 records.
+    Another aside: because locations have no temporal component, we can't exploit time in our distance metric to decrease the number of comparisons we make to instantiate them. However, these comparisons are made between visits and locations, not between pairs of records. Comparing 4,400 visits to 750 locations is <b><em>much less expensive</em></b> than doing pairwise comparison between 750,000 records. If these comparisons became costly, we could always consider other techniques for finding neighbors, like <a href="https://en.wikipedia.org/wiki/Geohash">geohashing</a>.
   </p>
 
 
@@ -123,8 +122,6 @@
     For allowing users to simply stalk themselves in the privacy of their own phones, it's easy to write a client-side application to cluster and store location history records. But part of the tradition of the web is users embracing erosion of their privacy for the sake of convenience. The networking features of location history, which can't be implemented client-side, will likely be embraced by users in the future. I wrote this clustering program, and built a front end for <a href="../location_history">exploring the results</a>, in 2014. Google probably thought of it before that, but didn't <a href="https://www.google.com/maps/timeline">implement it</a> until 2015, because it is an idea that gives us pause. Maybe we need to get comfortable stalking ourselves before we stalk, and are stalked by, our friends.
   </p>
 
-
-</section>
 
 
 </article>
