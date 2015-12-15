@@ -27,6 +27,8 @@
 	      <li><a href="https://www.facebook.com/elcomedordesanpascualbailongo?fref=ts"><span class="menu-item">el comedor</span></a></li>
 	      <li><a href="http://ojodecorazon.tumblr.com/"><span class="menu-item">ojo de corazón</span></a></li>
 	      <li><a href="location_history"><span class="menu-item">location history</span></a></li>
+	      <li role="separator" class="divider"></li>
+	      <li><a href="about"><span class="menu-item">about</span></a></li>
 
 	    </ul>
 	  </li>
@@ -81,6 +83,7 @@
 </ul>
 
 
+<?php include '__partials/license.html'; ?>
 
 </main>
 
