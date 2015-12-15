@@ -49,6 +49,20 @@
 <a class="anchor" name="posts" id="first-anchor"></a>
 <h2>Posts</h2>
 
+<?php
+
+// include_once 'models/Post.php';
+// $query = "SELECT
+// 	id, written, slug, name, description, content, filename, created, updated
+// 	FROM post
+// 	ORDER BY written DESC";
+
+// $posts = $db->rawQuery($query, null, false);
+// foreach ($posts as $post):
+
+
+?>
+
 <!-- read files from posts directory -->
 <ul>
 	<?php $posts = glob('posts/[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]*');
