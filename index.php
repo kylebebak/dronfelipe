@@ -60,7 +60,7 @@
 	$posts = $db->rawQuery($query, null, false);
 	foreach ($posts as $post): ?>
 		<li class="post-item">
-		 	<a title="<?=$post['description'] ?>" href="posts/<?=$post['slug'] ?>"><?=$post['name'] ?></a>
+		 	<a title="<?= $post['description'] ?>" href="posts/<?= $post['slug'] ?>"><?= $post['name'] ?></a>
 		</li>
 	<?php endforeach; ?>
 </ul>

@@ -73,3 +73,9 @@ ul.formula li {
 	margin-top: .5em;
 	list-style: none;
 }
+
+footer {
+	text-align: center;
+	margin-top: 3em;
+	font-size: .8em;
+}
