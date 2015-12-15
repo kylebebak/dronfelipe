@@ -15,7 +15,7 @@ $query = "SELECT
 // CONSTRUCT WHERE CLAUSE
 include '__build_query.php';
 
-$visits = $db->rawQuery($query, null, false);
+$visits = $db->rawQuery($query, null);
 
 
 
@@ -29,7 +29,7 @@ $query = "SELECT
 // CONSTRUCT WHERE CLAUSE
 include '__build_query.php';
 
-$trips = $db->rawQuery($query, null, false);
+$trips = $db->rawQuery($query, null);
 
 
 echo json_encode(array("visits" => $visits, "trips" =>  $trips));

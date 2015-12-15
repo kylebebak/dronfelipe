@@ -9,15 +9,12 @@ if (!$_POST['location_id']) {
 	return;
 }
 
-$location_id = $_POST['location_id'];
-
-
 
 // visits for location
 $query = "SELECT
 	DATE(start_date) AS date, SUM(duration) AS duration
 	FROM grouped_point gp
-	WHERE location_id = " . htmlspecialchars($location_id);
+	WHERE location_id = ?";
 
 
 // CONSTRUCT WHERE CLAUSE
@@ -26,7 +23,7 @@ include '__build_query.php';
 // group by comes after where clause
 $query .= " GROUP BY DATE(start_date)";
 
-$results = $db->rawQuery($query, null, false);
+$results = $db->rawQuery($query, Array($_POST['location_id']));
 
 
 // convert seconds to hours, and make sure that no day is longer than 24 hours, by rolling extra hours over to the next record

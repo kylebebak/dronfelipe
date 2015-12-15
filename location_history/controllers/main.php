@@ -24,12 +24,12 @@ $query .= " GROUP BY l.id ORDER BY duration DESC";
 
 // limit clause comes last
 if (isset($limit)) {
-	$query .= " LIMIT " . htmlspecialchars($limit);
+	$query .= " LIMIT " . $limit;
 }
 
 
 
-echo json_encode($db->rawQuery($query, null, false));
+echo json_encode($db->rawQuery($query, null));
 
 
 

@@ -9,7 +9,7 @@ if (!$_POST['location_id']) {
 	return;
 }
 
-$location_id = htmlspecialchars($_POST['location_id']);
+$location_id = $db->mysqli()->real_escape_string($_POST['location_id']);
 
 
 
@@ -28,7 +28,7 @@ AND t.start_location_id = " . $location_id;
 
 include '__build_query.php';
 $query .= " GROUP BY t.end_location_id HAVING count_lid > 1 ORDER BY count_lid DESC";
-$start_aggregate = $db->rawQuery($query, null, false);
+$start_aggregate = $db->rawQuery($query, null);
 
 
 
@@ -50,7 +50,7 @@ AND t.start_location_id = " . $location_id;
 
 include '__build_query.php';
 $query .= " ORDER BY c.count_lid DESC, t.end_location_id, t.start_date ASC";
-$start_all = $db->rawQuery($query, null, false);
+$start_all = $db->rawQuery($query, null);
 
 
 
@@ -67,7 +67,7 @@ AND t.end_location_id = " . $location_id;
 
 include '__build_query.php';
 $query .= " GROUP BY t.start_location_id HAVING count_lid > 1 ORDER BY count_lid DESC";
-$end_aggregate = $db->rawQuery($query, null, false);
+$end_aggregate = $db->rawQuery($query, null);
 
 
 
@@ -89,7 +89,7 @@ AND t.end_location_id = " . $location_id;
 
 include '__build_query.php';
 $query .= " ORDER BY c.count_lid DESC, t.start_location_id, t.end_date ASC";
-$end_all = $db->rawQuery($query, null, false);
+$end_all = $db->rawQuery($query, null);
 
 
 
@@ -109,7 +109,7 @@ include '__build_query.php';
 $query .= " ORDER BY t.start_date ASC) SQ, location ls, location le
 WHERE ls.id = SQ.start_location_id AND le.id = SQ.end_location_id";
 
-$start_end_all = $db->rawQuery($query, null, false);
+$start_end_all = $db->rawQuery($query, null);
 
 
 

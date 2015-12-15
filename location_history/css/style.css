@@ -208,6 +208,10 @@ li#weekdays-container {
 	margin-top: 8px;
 }
 
+label.checkbox {
+	color: black !important;
+}
+
 li#search-container {
 	margin-top: 11px;
 	margin-right: 10px;
