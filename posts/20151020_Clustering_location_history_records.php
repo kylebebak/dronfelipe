@@ -96,7 +96,7 @@
   </p>
 
   <p>
-    An aside: it seems plausible that a sequence of unfortunately placed records, moving slowly but surely in one direction, could <b>"stretch out"</b> a visit so that it contains pairs of records that are separated by a distance much greater than <code>R</code>. <a href="assets?a=visit_logarithmic_growth">I've shown here</a> that for the most pathological sequence of records, the <b>"diameter"</b> of the visit grows as <code>R * ln(n)</code>, where <code>n</code> is the number of records in the visit. With real data, stretched visits occur with vanishing probability. Still, it's reassuring that even in the worst case they grow slowly.
+    An aside: it seems plausible that a sequence of unfortunately placed records, moving slowly but surely in one direction, could <b>"stretch out"</b> a visit so that it contains pairs of records that are separated by a distance much greater than <code>R</code>. <a href="assets/visit_logarithmic_growth">I've shown here</a> that for the most pathological sequence of records, the <b>"diameter"</b> of the visit grows as <code>R * ln(n)</code>, where <code>n</code> is the number of records in the visit. With real data, stretched visits occur with vanishing probability. Still, it's reassuring that even in the worst case they grow slowly.
   </p>
 
   <p>

@@ -57,7 +57,7 @@
 	  $postname = str_replace('_', ' ', explode('_', $post, 2)[1]);
 	  ?>
 		<li class="post-item">
-	  	<a href="posts?p=<?=$post ?>"><?=$postname ?></a>
+	  	<a href="posts/<?=$post ?>"><?=$postname ?></a>
 		</li>
   <?php endforeach; ?>
 </ul>
