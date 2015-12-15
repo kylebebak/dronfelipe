@@ -49,7 +49,7 @@
 <a class="anchor" name="posts" id="first-anchor"></a>
 <h2>Posts</h2>
 
-<!-- read files from  -->
+<!-- read files from posts directory -->
 <ul>
 	<?php $posts = glob('posts/[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]*');
 	foreach (array_reverse($posts) as $post):

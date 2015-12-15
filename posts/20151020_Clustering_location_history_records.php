@@ -1,3 +1,5 @@
+<meta published="2015-10-20" slug="clustering_location_history" name="How to cluster location history records" description="" />
+
 <article>
 
 <header>
