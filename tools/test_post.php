@@ -12,17 +12,16 @@
 <?php include '../__partials/navbar-left.html'; ?>
 <?php include '../__partials/navbar-right.html'; ?>
 
-
+<article>
 <?php
 
 parse_str($_SERVER['QUERY_STRING']);
 include "../posts/$p.php";
 
 ?>
+</article>
 
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML-full"></script>
 
-
 </body>
 </html>
-

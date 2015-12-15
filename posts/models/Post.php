@@ -1,6 +1,6 @@
 <?php
 
-require_once 'models/MysqliDb.php';
+require_once 'MysqliDb.php';
 
 if (!isset($db)) {
 	$db = new MysqliDb('127.0.0.1', 'root', 'root', 'mysql');

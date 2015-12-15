@@ -12,7 +12,9 @@
 
 parse_str($_SERVER['QUERY_STRING']);
 if (file_exists("$a.php")) {
+  echo "<article>";
   include "$a.php";
+  echo "</article>";
 } else {
   include "404.php";
 }

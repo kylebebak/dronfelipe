@@ -1,6 +1,3 @@
-<article>
-
-
 <h3>
   Stretching of visits: worst case scenario
 </h3>
@@ -38,4 +35,3 @@
 <p>
   It's clear that `AAn >= 2, c_n = 1/2 + 1/3 + ... + 1/n`. As for the diameter, the next record is always added at a distance <code>R=1</code> from the previously calculated center, so we have `AAn >= 2, d_n = 1 + c_(n-1) = sum_(i=1)^(n-1) 1/i`.  But this is just <a href="https://en.wikipedia.org/wiki/Harmonic_series_(mathematics)">the harmonic series</a>. The growth of this series is logarithmic. Specifically, `AAn >= 2, d_n < ln(n)`.
 </p>
-</article>

@@ -1,7 +1,7 @@
 <?php
 
-include_once '../../models/ChromePhp.php';
-require_once '../../models/MysqliDb.php';
+include_once 'ChromePhp.php';
+require_once 'MysqliDb.php';
 
 
 if (!isset($db)) {
