@@ -6,9 +6,19 @@
 
 <?php
 
+include_once 'models/Post.php';
+
 parse_str($_SERVER['QUERY_STRING']);
-if (file_exists("$p.php")) {
-  include "$p.php";
+
+$query = 'SELECT
+  id, written, slug, name, description, content, created, updated
+  FROM post
+  WHERE slug = ?';
+
+$post = $db->rawQueryOne($query, Array($p));
+
+if(isset($post)) {
+  echo $post['content'];
 } else {
   include "404.php";
 }

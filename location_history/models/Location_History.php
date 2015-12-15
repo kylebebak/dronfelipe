@@ -9,7 +9,7 @@ if (!isset($db)) {
 	// the port must be specified if it's not the default (3306)
 }
 
-$db->select_db("location_history");
+$db->mysqli()->select_db("location_history");
 
 
 

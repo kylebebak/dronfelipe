@@ -49,33 +49,21 @@
 <a class="anchor" name="posts" id="first-anchor"></a>
 <h2>Posts</h2>
 
-<?php
-
-// include_once 'models/Post.php';
-// $query = "SELECT
-// 	id, written, slug, name, description, content, filename, created, updated
-// 	FROM post
-// 	ORDER BY written DESC";
-
-// $posts = $db->rawQuery($query, null, false);
-// foreach ($posts as $post):
-
-
-?>
-
-<!-- read files from posts directory -->
 <ul>
-	<?php $posts = glob('posts/[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]*');
-	foreach (array_reverse($posts) as $post):
-	  $post = pathinfo(explode('/', $post, 2)[1], PATHINFO_FILENAME);
-	  $postname = str_replace('_', ' ', explode('_', $post, 2)[1]);
-	  ?>
-		<li class="post-item">
-	  	<a href="posts/<?=$post ?>"><?=$postname ?></a>
-		</li>
-  <?php endforeach; ?>
-</ul>
+	<?php
+	include_once 'posts/models/Post.php';
+	$query = "SELECT
+		id, written, slug, name, description, content, created, updated
+		FROM post
+		ORDER BY written DESC";
 
+	$posts = $db->rawQuery($query, null, false);
+	foreach ($posts as $post): ?>
+		<li class="post-item">
+		 	<a title="<?=$post['description'] ?>" href="posts/<?=$post['slug'] ?>"><?=$post['name'] ?></a>
+		</li>
+	<?php endforeach; ?>
+</ul>
 
 
 
