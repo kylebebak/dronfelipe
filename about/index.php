@@ -15,7 +15,7 @@
 <main>
 <h3>About</h3>
 <p>
-  Kyle Bebak is a web developer that lives between California and Mexico City. He enjoys coding, writing, reading, biking, boozing, and walking his dog. Write him at <b><em>kyle bebak at geemail dot com</em></b>.
+  Kyle Bebak is a web developer that lives between California and Mexico City. He enjoys reading, coding, fooling around with algorithms, writing, biking, boozing, and walking his dog. Write him at <b><em>kyle bebak at geemail dot com</em></b>.
 </p>
 
 <?php include '../__partials/license.html'; ?>
