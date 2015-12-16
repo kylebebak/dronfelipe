@@ -25,7 +25,7 @@ if(!isset($post)) {
     <footer>
       <p><b>
         Written on <?= $post['written'] ?><br>
-        Last updated on <?= $post['updated'] ?>
+        Last updated <?= $post['updated'] ?>
       </b></p>
     </footer>
   </article>

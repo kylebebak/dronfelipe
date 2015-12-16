@@ -1,4 +1,4 @@
-<meta written="2014-11-15" slug="clustering_location_history" name="How to cluster location history records" description="Clustering location history records (latitude, longitude, timestamp). Algorithm and applications." />
+<meta written="2015-12-03" slug="clustering_location_history" name="How to cluster location history records" description="Clustering location history records (latitude, longitude, timestamp). Algorithm and applications." />
 
 <header>
   <h2>
@@ -32,7 +32,7 @@
 </p>
 
 <p>
-  A sequence of records which is not stationary and cannot be grouped into a visit is necessarily grouped into a <b><code>trip</code></b> between two visits. Every pair of consecutive visits is connected by a trip. A trip knows its <code>displacement</code>, <code>distance</code>, <code>start_time</code>, <code>end_time</code>, <code>start_visit</code>, and <code>end_visit</code>. By giving the trip pointers to the first and last of the location history records from which it was formed, these records can be used to reconstruct the trip's route if necessary.
+  A sequence of records which is not stationary and cannot be grouped into a visit is necessarily grouped into a <b><code>trip</code></b> between two visits. Every pair of consecutive visits is connected by a trip. A trip knows its <code>displacement</code>, <code>distance</code>, <code>start_time</code>, <code>end_time</code>, <code>start_visit</code>, and <code>end_visit</code>. By giving the trip pointers to the first and last location history records from which it was formed, these records can be used to reconstruct the trip's route if necessary.
 </p>
 
 <p>
@@ -40,11 +40,11 @@
 </p>
 
 <div class="paragraph">
-  The locations assigned to visits and trips allow us to answer aggregate questions, like:
+  Assigning locations to visits and trips allows us to answer aggregate questions, like:
   <ul>
     <li>Where do I spend most of my time (top 5 places) on Saturdays?</li>
+    <li>How many times have I been to my girlfriend's house, on the weekend?</li>
     <li>Over the past 6 months, at what time on average do I leave work on Friday?</li>
-    <li>How much time do I spend at my girlfriend's house on the weekends?</li>
     <li>How long on average does it take me to get to work?</li>
   </ul>
 </div>
@@ -55,7 +55,7 @@
 
 <h3>Clustering Algorithm</h3>
 <p>
-  Without constraints, clustering spatial data is a hard problem with imprecise solutions. Even using heuristics it's hard to beat quadratic time complexity, the inuition being that to assign each record to a cluster, you need to compare it with all the other records in the set to know which ones are nearby.
+  Without constraints, clustering spatial data is a hard problem with imprecise solutions. Even using heuristics it's hard to beat quadratic time complexity, the intuition being that to assign each record to a cluster, you need to compare it with all the other records in the set to know which ones are nearby.
 </p>
 
 <p>
@@ -67,15 +67,16 @@
 </p>
 
 <p>
-  Here's how it works. In the first pass through the data, each record is compared to the most recently instantiated <b>potential visit</b>, whose latitude and longitude are the average coordinates of the records it contains. If the record is within a distance <code>R</code> of the visit, it gets added to the visit, and the visit's latitude and longitude are recalculated to reflect the addition of the record. If the record is not within <code>R</code> of the visit, a new potential visit is instantiated containing only this record.
+  Here's how it works. In the first pass through the data, each record is compared to the most recently instantiated <b>potential visit</b>, whose latitude and longitude are the average coordinates of the records it contains. If the record is within a distance <code>R</code> of the visit, it gets added to the visit, and the visit's latitude and longitude are recalculated to reflect the addition of the record. If the record is not within <code>R</code> of the visit, a new potential visit is instantiated containing only this record. In Python:
   <pre style="margin: 0; line-height: 125%">visit <span style="color: #333333">=</span> <span style="color: #007020">None</span>
-  <span style="color: #008800; font-weight: bold">for</span> each record <span style="color: #000000; font-weight: bold">in</span> records:
-      <span style="color: #888888"># records sorted from oldest to newest</span>
-      <span style="color: #008800; font-weight: bold">if</span> visit <span style="color: #000000; font-weight: bold">and</span> visit<span style="color: #333333">.</span>distance_to(record) <span style="color: #333333">&lt;</span>= R:
-          visit<span style="color: #333333">.</span>add(record)
-      <span style="color: #008800; font-weight: bold">else</span>:
-          visit <span style="color: #333333">=</span> Visit(record)
-  </pre>
+<span style="color: #008800; font-weight: bold">for</span> each record <span style="color: #000000; font-weight: bold">in</span> records:
+<span style="color: #888888"># records sorted from oldest to newest</span>
+    <span style="color: #008800; font-weight: bold">if</span> visit <span style="color: #000000; font-weight: bold">and</span> visit<span style="color: #333333">.</span>distance_to(record) <span style="color: #333333">&lt;=</span> R:
+        visit<span style="color: #333333">.</span>add(record)
+    <span style="color: #008800; font-weight: bold">else</span>:
+        visit <span style="color: #333333">=</span> Visit(record)
+</pre>
+
 </p>
 
 <p>

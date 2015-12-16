@@ -16,7 +16,9 @@
 </p>
 
 <ul class="formula">
-
+  <li>
+    `c_(n+1) = (n * c_n + (c_n + 1))/(n + 1)` <code>in general</code>
+  </li>
   <li>
     `c_1 = 0` <code>first record in visit</code>
   </li>
