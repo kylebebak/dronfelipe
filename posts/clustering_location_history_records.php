@@ -80,7 +80,7 @@
 </p>
 
 <p>
-  Next, potential visits with fewer than <code>N</code> constituent records are discarded. The remaining visits have pointers to their first and last records, which allows the second pass through the data to focus only on these unclustered records. From each sequence of records linking one visit to another, a trip is instantiated.
+  Next, potential visits with fewer than <code>N</code> constituent records are discarded. The remaining visits have pointers to their first and last records, which allows the second pass through the data to focus only on the unclustered records. From each sequence of records linking one visit to another, a trip is instantiated.
 </p>
 
 <p>
@@ -93,7 +93,7 @@
 </p>
 
 <p>
-  Exploiting structure and constraints inherent in the data, we avoid the guesswork used in algorithms like <b>k-means</b>, resulting in a simple, predictable algorithm that produces clusters whose meaning is clear. As for time complexity, any conceivable clustering will have to read each record at least once, so our linear implementation for clustering visits is <em>as fast as possible</em>.
+  Exploiting structure and constraints inherent in the data, we avoid the guesswork used in algorithms like <b>k-means</b>, resulting in a simple, predictable algorithm that produces clusters whose meaning is clear. As for time complexity, any conceivable clustering will have to read each record at least once, so our linear implementation, at least for clustering visits, is <em>as fast as possible</em>.
 </p>
 
 <p>
@@ -101,7 +101,7 @@
 </p>
 
 <p>
-  Another aside: because locations have no temporal component, we can't exploit time in our distance metric to decrease the number of comparisons we make to instantiate them. However, these comparisons are made between visits and locations, not between pairs of records. Comparing 4,400 visits to 750 locations is <b><em>much less expensive</em></b> than doing pairwise comparison between 750,000 records. If these comparisons became costly, we could always consider other techniques for finding neighbors, like <a href="https://en.wikipedia.org/wiki/Geohash">geohashing</a>.
+  Another aside: because locations have no temporal component, we can't exploit time in our distance metric to decrease the number of comparisons we make to instantiate them. However, these comparisons are made between visits and locations, not between pairs of records. Comparing 4,400 visits to 750 locations is <b><em>much less expensive</em></b> than doing pairwise comparison between 750,000 records. If these comparisons become costly, we can always consider other techniques for finding neighbors, like <a href="http://www.bigfastblog.com/geohash-intro">geohashing</a>.
 </p>
 
 
@@ -120,6 +120,6 @@
 
 <h3>Privacy</h3>
 <p>
-  For allowing users to track themselves in the privacy of their own phones, it's easy to write a client-side application to cluster and store location history records. But part of the tradition of the web is users trading privacy for convenience, or simply for the opposite of privacy. I think the networking features of location history, which can't be implemented client-side, will be embraced by users in the future. I wrote this clustering program, and built a front end for <a href="../location_history">exploring the results</a>, in 2014. Google probably thought of it before that, but didn't <a href="https://www.google.com/maps/timeline">implement it</a> until 2015, because it's an idea that gives us pause. We need to get comfortable tracking ourselves before we are tracked by our friends.
+  For allowing users to track themselves in the privacy of their own phones, it's easy to write a client-side application to cluster and store location history records. But part of the tradition of the web is users trading privacy for convenience, or simply for the opposite of privacy. I think the networking features of location history, which can't be implemented client-side, will be embraced by users in the future. I wrote this clustering program, and built a front end for <a href="../location_history">exploring the results</a>, in 2014. Google probably thought of it before that, but didn't release <a href="https://www.google.com/maps/timeline">timeline</a> until 2015, because it's an idea that gives us pause. We need to get comfortable tracking ourselves before we are tracked by our friends.
 </p>
 

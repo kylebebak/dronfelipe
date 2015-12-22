@@ -12,28 +12,28 @@
 </p>
 
 <p>
-  We focus on the growth of <code>c</code>, and hence <code>d</code>, as a function of <code>n</code>, the number of records that have been added to <code>V</code>. We assume <code>R=1</code> to simplify our expressions.
+  We focus on the growth of <code>c</code>, and hence <code>d</code>, as a function of <code>n</code>, the number of records that have been added to <code>V</code>.
 </p>
 
 <ul class="formula">
   <li>
-    `c_(n+1) = (n * c_n + (c_n + 1))/(n + 1)` <code>in general</code>
+    `c_(n+1) = (n * c_n + (c_n + R))/(n + 1)` <code>in general</code>
   </li>
   <li>
     `c_1 = 0` <code>first record in visit</code>
   </li>
   <li>
-    `c_2 = (1 * c_1 + (c_1 + 1))/2 = (2 * c_1 + 1)/2 = c_1 + 1/2 = 1/2`
+    `c_2 = (1 * c_1 + (c_1 + R))/2 = (2 * c_1 + R)/2 = c_1 + R/2 = R/2`
   </li>
   <li>
-    `c_3 = (2 * c_2 + (c_2 + 1))/3 = (3 * c_2 + 1)/3 = c_2 + 1/3 = 1/2 + 1/3`
+    `c_3 = (2 * c_2 + (c_2 + R))/3 = (3 * c_2 + R)/3 = c_2 + R/3 = R/2 + R/3`
   </li>
   <li>
-    `c_4 = (3 * c_3 + (c_3 + 1))/4 = (4 * c_3 + 1)/4 = c_3 + 1/4 = 1/2 + 1/3 + 1/4`
+    `c_4 = (3 * c_3 + (c_3 + R))/4 = (4 * c_3 + R)/4 = c_3 + R/4 = R/2 + R/3 + R/4`
   </li>
 
 </ul>
 
 <p>
-  It's clear that `AAn >= 2, c_n = 1/2 + 1/3 + ... + 1/n`. As for the diameter, the next record is always added at a distance <code>R=1</code> from the previously calculated center, so we have `AAn >= 2, d_n = 1 + c_(n-1) = sum_(i=1)^(n-1) 1/i`.  But this is just <a href="https://en.wikipedia.org/wiki/Harmonic_series_(mathematics)">the harmonic series</a>. The growth of this series is logarithmic. Specifically, `AAn >= 2, d_n < ln(n)`.
+  It's clear that `AAn >= 2, c_n = R(1/2 + 1/3 + ... + 1/n)`. As for the diameter, the next record is always added at a distance <code>R</code> from the previously calculated center, so we have `AAn >= 2, d_n = R + c_(n-1) = Rsum_(i=1)^(n-1) 1/i`.  But this is just <a href="https://en.wikipedia.org/wiki/Harmonic_series_(mathematics)">the harmonic series</a>. The growth of this series is logarithmic. Specifically, `AAn >= 2, d_n < R*ln(n)`.
 </p>
