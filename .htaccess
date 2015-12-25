@@ -9,3 +9,16 @@ RewriteRule ^posts/index.php - [L]
 
 RewriteRule ^posts/assets/(.+[^/])$ posts/assets/?a=$1 [L]
 RewriteRule ^posts/(.+[^/])$ posts/?p=$1 [L]
+
+# prevent access to .git directory
+RedirectMatch 403 /\.git
+# prevent access to __partials, but allow access to css subdirectory
+RedirectMatch 403 "/__partials/.*html$"
+
+# Custom Error Responses
+ErrorDocument 403 "You don't have permission to go here."
+# ErrorDocument 404 /errors/access_denied.php
+ErrorDocument 404 "This page doesn't exist..."
+# ErrorDocument 404 /errors/not_found.php
+ErrorDocument 500 "Something broke... Sorry about that =/"
+# ErrorDocument 500 /errors/server_error.php
