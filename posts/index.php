@@ -7,6 +7,7 @@
 
 include_once 'models/Post.php';
 
+
 parse_str($_SERVER['QUERY_STRING']);
 
 $query = "SELECT

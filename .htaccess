@@ -16,9 +16,6 @@ RedirectMatch 403 /\.git
 RedirectMatch 403 "/__partials/.*html$"
 
 # Custom Error Responses
-ErrorDocument 403 "You don't have permission to go here."
-# ErrorDocument 404 /errors/access_denied.php
-ErrorDocument 404 "This page doesn't exist..."
-# ErrorDocument 404 /errors/not_found.php
-ErrorDocument 500 "Something broke... Sorry about that =/"
-# ErrorDocument 500 /errors/server_error.php
+ErrorDocument 403 /errors/access_denied.php
+ErrorDocument 404 /errors/not_found.php
+ErrorDocument 500 /errors/server_error.php

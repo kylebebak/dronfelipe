@@ -10,9 +10,6 @@
 </head>
 <body>
 
-
-
-
 <nav class="navbar navbar-default navbar-fixed-top">
 
 
@@ -74,6 +71,8 @@
 	<li><span class="content-item">Tortas</span> - Pon tu propio changarro de tortas. Genera un <a href="tortas">menú</a> digno de los mejores puestos: sumamente variado, internacional y sin sentido alguno.</li>
 
 	<li><span class="content-item">Match It</span> - An Android clone of the <a href="http://www.blueorangegames.com/index.php/games/spotit">Spot it!</a> card game, on Google Play Store <a href="https://play.google.com/store/apps/details?id=bebak.kyle.tap_it">here</a>.</li>
+
+	<li><span class="content-item">py-geohash-any</span> - A minimal Python geohash library designed to use any url-safe encoding. <a href="https://github.com/kylebebak/py-geohash-any">Here on Github</a>.</li>
 
 	<li><span class="content-item">Notes</span> - Because accessing your Evernotes takes too long. Notes provides a minimal syntax for manipulating notes from any working directory. You choose the file extension for your notes (the default is <a href="http://daringfireball.net/projects/markdown/">.md</a>), but for convenience Notes' syntax is completely independent of this extension. Combined with an editor like <a href="http://macdown.uranusjr.com/">MacDown</a>, or Sublime Text with a plugin like <a href="https://github.com/SublimeText-Markdown/MarkdownEditing">MarkdownEditing</a>, Notes recovers the formatting goodness you would otherwise lose switching from a note-taking app to plain text. Place your notes directory in your Dropbox or something similar to get syncing, versioning, and access from everywhere. <a href="https://github.com/kylebebak/notes">Check it out here</a>.</li>
 
