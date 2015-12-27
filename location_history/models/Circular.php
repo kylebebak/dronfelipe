@@ -2,14 +2,13 @@
 
 
 /*
-implemented using "circular statistics", method here:
+implemented using "circular statistics":
 http://rosettacode.org/wiki/Averages/Mean_angle#PHP
 
-this is an approximation, and from what i have seen nothing will give exact results for average involving more than two values. e.g., the average of 360, 360 and 15 should be 5, but this method yields roughly 4.98
+this is an approximation, and from what i've seen nothing will give exact results
+for averages involving more than two values. e.g., the average of 360, 360 and 15
+should be 5, but this method yields roughly 4.98
 */
-
-
-
 
 
 function meanAngle($angles) {
@@ -25,8 +24,6 @@ function meanAngle($angles) {
 	$y_part /= $size;
 	return rad2deg(atan2($y_part, $x_part));
 }
-
-
 
 
 function circularMean($values, $circular_units_input) {
@@ -47,9 +44,6 @@ function circularMean($values, $circular_units_input) {
 	return $toReturn;
 
 }
-
-
-
 
 
 
