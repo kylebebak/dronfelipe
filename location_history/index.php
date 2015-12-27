@@ -17,7 +17,9 @@
 
 
 
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/__partials/navbar-left.html'; ?>
+<?php
+$root = $_SERVER['DOCUMENT_ROOT'];
+include "${root}/__partials/navbar-left.html"; ?>
 
 
 
@@ -75,7 +77,7 @@
 
 	</ul>
 
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/__partials/navbar-right.html'; ?>
+<?php include "${root}/__partials/navbar-right.html"; ?>
 
 
 

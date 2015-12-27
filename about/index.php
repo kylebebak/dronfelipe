@@ -9,8 +9,10 @@
 <body>
 
 
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/__partials/navbar-left.html'; ?>
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/__partials/navbar-right.html'; ?>
+<?php
+$root = $_SERVER['DOCUMENT_ROOT'];
+include "${root}/__partials/navbar-left.html";
+include "${root}/__partials/navbar-right.html"; ?>
 
 <main>
 <h3>About</h3>
@@ -18,7 +20,7 @@
   Kyle Bebak is a web developer that lives between California and Mexico City. He enjoys reading, coding, fooling around with algorithms, writing, biking, boozing, and walking his dog. Write him at <b><em>kyle bebak at geemail dot com</em></b>.
 </p>
 
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/__partials/license.html'; ?>
+<?php include "${root}/__partials/license.html"; ?>
 
 </main>
 

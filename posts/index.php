@@ -1,9 +1,9 @@
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/__partials/header.html'; ?>
-
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/__partials/navbar-left.html'; ?>
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/__partials/navbar-right.html'; ?>
-
 <?php
+$root = $_SERVER['DOCUMENT_ROOT'];
+include "${root}/__partials/header.html";
+include "${root}/__partials/navbar-left.html";
+include "${root}/__partials/navbar-right.html";
+
 
 include_once 'models/Post.php';
 
