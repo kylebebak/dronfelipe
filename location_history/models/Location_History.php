@@ -1,7 +1,7 @@
 <?php
 
-include_once $_SERVER['DOCUMENT_ROOT'] . '/models/' . 'ChromePhp.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/models/' . 'MysqliDb.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/models/ChromePhp.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/models/MysqliDb.php';
 
 if (!isset($db)) {
 	$db = new MysqliDb('127.0.0.1', 'root', 'root', 'mysql');

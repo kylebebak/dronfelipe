@@ -13,7 +13,7 @@
 <?php
 
 parse_str($_SERVER['QUERY_STRING']);
-include "../posts/assets/$a.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/posts/assets/$a.php";
 
 ?>
 </article>

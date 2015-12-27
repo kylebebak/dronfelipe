@@ -9,14 +9,14 @@
 </head>
 <body>
 
-<?php include '../__partials/navbar-left.html'; ?>
-<?php include '../__partials/navbar-right.html'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/__partials/navbar-left.html'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/__partials/navbar-right.html'; ?>
 
 <article>
 <?php
 
 parse_str($_SERVER['QUERY_STRING']);
-include "../posts/$p.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/posts/$p.php";
 
 ?>
 </article>

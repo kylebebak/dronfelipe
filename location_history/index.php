@@ -4,20 +4,20 @@
 	<meta charset=utf-8>
 	<title>dronfelipe</title>
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
-	<link href="../lib/css/bootstrap-datepicker.min.css" rel="stylesheet">
-	<link href="../lib/css/bootstrap-multiselect.css" rel="stylesheet">
-	<link href="../lib/css/select2.css" rel="stylesheet">
-	<link href="../lib/css/select2-bootstrap.css" rel="stylesheet">
-	<link href="../lib/css/metricsgraphics.css" rel="stylesheet">
+	<link href="/lib/css/bootstrap-datepicker.min.css" rel="stylesheet">
+	<link href="/lib/css/bootstrap-multiselect.css" rel="stylesheet">
+	<link href="/lib/css/select2.css" rel="stylesheet">
+	<link href="/lib/css/select2-bootstrap.css" rel="stylesheet">
+	<link href="/lib/css/metricsgraphics.css" rel="stylesheet">
 
-	<link rel="stylesheet" href="../__partials/css/style.css">
+	<link rel="stylesheet" href="/__partials/css/style.css">
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 
 
-<?php include '../__partials/navbar-left.html'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/__partials/navbar-left.html'; ?>
 
 
 
@@ -75,7 +75,7 @@
 
 	</ul>
 
-<?php include '../__partials/navbar-right.html'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/__partials/navbar-right.html'; ?>
 
 
 
@@ -101,10 +101,10 @@
 
 
 <!-- these depend on twitter bootstrap, so they are loaded after it -->
-<script src="../lib/js/bootstrap-datepicker.min.js"></script>
-<script src="../lib/js/bootstrap-multiselect.js"></script>
-<script src="../lib/js/select2.min.js"></script>
-<script src="../lib/js/metricsgraphics.min.js"></script>
+<script src="/lib/js/bootstrap-datepicker.min.js"></script>
+<script src="/lib/js/bootstrap-multiselect.js"></script>
+<script src="/lib/js/select2.min.js"></script>
+<script src="/lib/js/metricsgraphics.min.js"></script>
 
 
 <!-- this depends on all of the above -->

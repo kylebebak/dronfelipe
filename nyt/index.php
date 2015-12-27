@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<?php include '../__partials/header.html'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/__partials/header.html'; ?>
 
-<?php include '../__partials/navbar-left.html'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/__partials/navbar-left.html'; ?>
 
   <ul class="nav navbar-nav navbar-centered">
 
@@ -80,4 +80,4 @@
 
 
 
-<?php include '../__partials/footer.html'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/__partials/footer.html'; ?>

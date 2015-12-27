@@ -48,7 +48,7 @@
 
 <ul>
 	<?php
-	include_once 'posts/models/Post.php';
+	include_once $_SERVER['DOCUMENT_ROOT'] . '/posts/models/Post.php';
 	$query = "SELECT
 		id, written, slug, name, description, content, created, updated
 		FROM post
@@ -84,7 +84,7 @@
 </ul>
 
 
-<?php include '__partials/license.html'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/__partials/license.html'; ?>
 
 </main>
 

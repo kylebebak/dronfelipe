@@ -1,7 +1,7 @@
-<?php include '../__partials/header.html'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/__partials/header.html'; ?>
 
-<?php include '../__partials/navbar-left.html'; ?>
-<?php include '../__partials/navbar-right.html'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/__partials/navbar-left.html'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/__partials/navbar-right.html'; ?>
 
 <?php
 

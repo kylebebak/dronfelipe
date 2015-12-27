@@ -17,8 +17,8 @@
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="../lib/css/normalize.css">
-  <link rel="stylesheet" href="../lib/css/skeleton.css">
+  <link rel="stylesheet" href="/lib/css/normalize.css">
+  <link rel="stylesheet" href="/lib/css/skeleton.css">
   <link rel="stylesheet" href="css/style.css">
 
 

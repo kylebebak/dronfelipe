@@ -1,7 +1,11 @@
-<?php include '../__partials/header.html'; ?>
 
-<?php include '../__partials/navbar-left.html'; ?>
-<?php include '../__partials/navbar-right.html'; ?>
+
+<?php
+$root = $_SERVER["DOCUMENT_ROOT"];
+include "${root}/__partials/header.html";
+include "${root}/__partials/navbar-left.html";
+include "${root}/__partials/navbar-right.html";
+?>
 
 
 <main>
@@ -34,8 +38,8 @@
 
 
 
-<?php include '../__partials/footer.html'; ?>
+<?php include "${root}/__partials/footer.html"; ?>
 
 
 <!-- this script must be loaded after jquery, because it's a jquery plugin which modifies the jquery object -->
-<script src="../lib/js/jquery.unveil.js"></script>
+<script src="/lib/js/jquery.unveil.js"></script>
