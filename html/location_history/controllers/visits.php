@@ -12,7 +12,7 @@ if (!$_POST['location_id']) {
 // visits for location
 $query = "SELECT
 	DATE(gp.start_date) as start_date, TIME(gp.start_date) as start_time, TIME_TO_SEC(gp.start_date) as start_time_sec, TIME_TO_SEC(gp.end_date) as end_time_sec, duration
-	FROM grouped_point gp
+	FROM visit gp
 	WHERE location_id = ?";
 
 

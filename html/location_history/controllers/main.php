@@ -5,10 +5,10 @@ include_once '__parse_query.php';
 
 
 
-// this query also counts the grouped_points that contribute to each location, and gets the duration dynamically by summing the duration values from the grouped_points, which means this can respond to any filters specified by the user
+// this query also counts the visits that contribute to each location, and gets the duration dynamically by summing the duration values from the visits, which means this can respond to any filters specified by the user
 $query = "SELECT
 	l.id, SUM(gp.duration) AS duration, l.lat, l.lon, l.geocode_name, l.name, l.description, COUNT(l.id) AS visits
-	FROM location l, grouped_point gp
+	FROM location l, visit gp
 	WHERE l.id = gp.location_id";
 
 

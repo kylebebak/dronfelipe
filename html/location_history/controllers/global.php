@@ -8,7 +8,7 @@ include_once '__parse_query.php';
 // visits
 $query = "SELECT
 	COUNT(gp.id) AS num, SUM(gp.duration) AS duration
-	FROM grouped_point gp
+	FROM visit gp
 	WHERE 1 = 1";
 
 
