@@ -7,9 +7,9 @@ include_once '__parse_query.php';
 
 // this query also counts the visits that contribute to each location, and gets the duration dynamically by summing the duration values from the visits, which means this can respond to any filters specified by the user
 $query = "SELECT
-	l.id, SUM(gp.duration) AS duration, l.lat, l.lon, l.geocode_name, l.name, l.description, COUNT(l.id) AS visits
-	FROM location l, visit gp
-	WHERE l.id = gp.location_id";
+	l.id, SUM(v.duration) AS duration, l.lat, l.lon, l.geocode_name, l.name, l.description, COUNT(l.id) AS visits
+	FROM location l, visit v
+	WHERE l.id = v.location_id";
 
 
 

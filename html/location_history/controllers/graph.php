@@ -13,7 +13,7 @@ if (!$_POST['location_id']) {
 // visits for location
 $query = "SELECT
 	DATE(start_date) AS date, SUM(duration) AS duration
-	FROM visit gp
+	FROM visit v
 	WHERE location_id = ?";
 
 

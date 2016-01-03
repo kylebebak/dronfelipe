@@ -1,0 +1,117 @@
+---
+- hosts: all
+  sudo: true
+  vars:
+    server_name: dronfelipe.dev
+    repository_url: "https://github.com/kylebebak/dronfelipe.git"
+    repository_root: /var/www/dronfelipe
+    document_root: "{{ repository_root }}/html"
+    mysql_root_password: root
+
+  handlers:
+    - name: reload apache
+      service: name=apache2 state=reloaded
+
+  tasks:
+    - name: Update apt cache
+      apt: update_cache=yes
+
+    - name: Install required packages
+      apt: name={{ item }} state=present
+      with_items:
+        - git
+        - apache2
+        - mysql-server
+        - php5
+        - php5-mysql
+        - python-mysqldb
+        - libapache2-mod-php5
+        - python-pip
+
+    - name: Install Python packages
+      pip: name={{ item }}
+      with_items:
+        - beautifulsoup4
+        - PyMySQL
+
+
+
+    - name: Create repository root
+      file:
+        path={{ repository_root }}
+        state=directory
+
+    - name: Clone repo into repository root
+      git:
+        repo={{ repository_url }}
+        dest={{ repository_root }}
+        clone=yes
+        update=no
+
+
+
+    - name: Copy across new virtual host
+      template:
+        src=templates/virtual-hosts.conf.j2
+        dest=/etc/apache2/sites-available/vagrant.conf
+
+    - name: Remove default virtual host
+      file:
+        path=/etc/apache2/sites-enabled/000-default.conf
+        state=absent
+      notify:
+        - reload apache
+
+    - name: Add new vagrant virtual host
+      file:
+        src=/etc/apache2/sites-available/vagrant.conf
+        dest=/etc/apache2/sites-enabled/vagrant.conf
+        state=link
+      notify:
+        - reload apache
+
+    - name: Enable mod_rewrite
+      apache2_module:
+        name=rewrite
+        state=present
+      notify:
+        - reload apache
+
+
+
+    - name: Set MySQL root password
+      mysql_user:
+        name=root
+        password="{{ mysql_root_password }}"
+        check_implicit_admin=yes
+        login_user="root"
+        login_password=""
+        state=present
+      ignore_errors: yes
+      tags:
+        - mysql
+        - password
+
+    - name: Create MySQL databases
+      mysql_db:
+        name={{ item }}
+        state=present
+        login_user='root'
+        login_password={{ mysql_root_password }}
+      with_items:
+          - location_history
+          - dronfelipe
+
+    - name: Import location history tables
+      mysql_db:
+        name={{ item.db_name }}
+        state=import
+        target="{{ repository_root }}/sql/{{ item.file_name }}.sql"
+        login_user='root'
+        login_password={{ mysql_root_password }}
+      with_items:
+        - { db_name: 'location_history', file_name: 'location_history' }
+        - { db_name: 'dronfelipe', file_name: 'post' }
+
+    - name: Insert all posts into MySQL database
+      shell: "python {{ document_root }}/posts/insert_posts.py {{ document_root }}/posts/posts/*.php"
