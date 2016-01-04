@@ -11,3 +11,14 @@
 `/var/www/dronfelipe/html`
 
 ## tests
+
+## provisioning
+```sh
+# development
+vagrant up
+# re-provision development
+vagrant reload --provision
+
+# production
+ansible-playbook -i <hostfile> main.yml -e production=true
+```
