@@ -13,12 +13,15 @@
 ## tests
 
 ## provisioning
+### development
 ```sh
-# development
 vagrant up
-# re-provision development
+# re-provision
 vagrant reload --provision
+```
 
-# production
-ansible-playbook -i <hostfile> main.yml -e production=true
+### production
+```sh
+# without inventory file
+ansible-playbook main.yml -i "dronfelipe.com," -e "production=True" -u ubuntu
 ```
