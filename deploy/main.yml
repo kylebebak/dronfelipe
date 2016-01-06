@@ -53,7 +53,7 @@
 
 
 
-    - name: Copy across new virtual host
+    - name: Copy across new virtual host to sites-available
       template:
         src=templates/virtual-hosts.conf.j2
         dest=/etc/apache2/sites-available/vagrant.conf
@@ -65,7 +65,7 @@
       notify:
         - reload apache
 
-    - name: Add new vagrant virtual host
+    - name: Add new virtual host to sites-enabled
       file:
         src=/etc/apache2/sites-available/vagrant.conf
         dest=/etc/apache2/sites-enabled/vagrant.conf

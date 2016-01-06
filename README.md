@@ -11,6 +11,12 @@
 `/var/www/dronfelipe/html`
 
 ## tests
+```sh
+python main.py -v
+# run only one test
+python main.py DronFelipe.<test_function> -v
+```
+
 
 ## provisioning
 ### development
