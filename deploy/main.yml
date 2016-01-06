@@ -51,6 +51,23 @@
       when:
         production
 
+    - name: Make hooks executable
+      file:
+        path: "{{ repository_root }}/deploy/hooks"
+        mode: u=rwx,g=rx,o=rx
+        recurse: true
+
+    - name: Delete .git/hooks directory
+      file:
+        path="{{ repository_root }}/.git/hooks"
+        state=absent
+
+    - name: Deploy hooks to .git/hooks
+      file:
+        src="{{ repository_root }}/deploy/hooks"
+        dest="{{ repository_root }}/.git/hooks"
+        state=link
+
 
 
     - name: Copy across new virtual host to sites-available

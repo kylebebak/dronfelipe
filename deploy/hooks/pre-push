@@ -1,0 +1,6 @@
+#!/bin/bash
+
+python ../../tests/functional.py -v s=http://dronfelipe.dev
+STATUS=$?
+printf "\npre-push tests finished with status:\n${STATUS}\n\n"
+exit ${STATUS}
