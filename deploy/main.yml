@@ -57,16 +57,17 @@
         mode: u=rwx,g=rx,o=rx
         recurse: true
 
-    - name: Delete .git/hooks directory
-      file:
-        path="{{ repository_root }}/.git/hooks"
-        state=absent
+    - name: Delete hooks in .git/hooks
+      shell: "rm -f {{ repository_root }}/.git/hooks/*"
+      ignore_errors: yes
 
     - name: Deploy hooks to .git/hooks
       file:
-        src="{{ repository_root }}/deploy/hooks"
-        dest="{{ repository_root }}/.git/hooks"
+        src="{{ repository_root }}/deploy/hooks/{{ item }}"
+        dest="{{ repository_root }}/.git/hooks/{{ item }}"
         state=link
+      with_items:
+        - "pre-push"
 
 
 
