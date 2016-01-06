@@ -32,3 +32,11 @@ vagrant reload --provision
 # without inventory file
 ansible-playbook main.yml -i "dronfelipe.com," -e "production=True" -u ubuntu
 ```
+
+
+## "continuous" integration
+```sh
+chmod a+x deploy/hooks/*
+rm -d .git/hooks
+ln -s deploy/hooks .git/hooks
+```
