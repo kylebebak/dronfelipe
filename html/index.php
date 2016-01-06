@@ -49,7 +49,7 @@
 <ul>
 	<?php
 	$root = $_SERVER['DOCUMENT_ROOT'];
-	include_once  "${root}/posts/models/Post.php";
+	include_once "${root}/posts/models/Post.php";
 	$query = "SELECT
 		id, written, slug, name, description, content, created, updated
 		FROM post

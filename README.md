@@ -12,9 +12,10 @@
 
 ## tests
 ```sh
-python main.py -v
+# if a base site is passed, it must be the last argument, and must have the form shown below
+python functional.py -v [s=<base_site>]
 # run only one test
-python main.py DronFelipe.<test_function> -v
+python functional.py Functional.<test_function> -v [s=<base_site>]
 ```
 
 

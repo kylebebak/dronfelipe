@@ -1,15 +1,16 @@
 import unittest
 import sys
+
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 
-class DronFelipe(unittest.TestCase):
+class Functional(unittest.TestCase):
 
     @classmethod
     def setUpClass(self):
         self.TIMEOUT = 30
-        self.base_site = "http://www.dronfelipe.com"
+        self.base_site = base_site
         self.random_segment = 'bvGnGqGr4nBl'
         self.driver = webdriver.Firefox()
         self.driver.set_page_load_timeout(self.TIMEOUT)
@@ -19,7 +20,8 @@ class DronFelipe(unittest.TestCase):
         self.driver.close()
 
     def wait_for_ajax(self, timeout=10, driver=None):
-        """Driver waits until timeout for AJAX request to finish."""
+        """Driver waits for AJAX request to finish, unless timeout occurs
+        first, in which case an exception is raised."""
         driver = driver if driver else self.driver
         wait = WebDriverWait(driver, timeout)
         wait.until(lambda driver: driver.execute_script(
@@ -117,5 +119,17 @@ class DronFelipe(unittest.TestCase):
 
 
 if __name__ == "__main__":
+    """
+    Args can be passed to the TestCase by (ab)using global arguments.
+    The base site must be the last command line argument passed to this
+    script, and it must be have the form 's=<base_site>'.
+    """
+    global base_site
+    base_site = "http://www.dronfelipe.com"
+    site = sys.argv[-1].split('s=')
+    if len(site) > 1:
+        base_site = site[1]
+        sys.argv.pop()
     unittest.main()
+
 
