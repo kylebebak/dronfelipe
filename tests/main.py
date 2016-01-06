@@ -8,18 +8,23 @@ class DronFelipe(unittest.TestCase):
 
     @classmethod
     def setUpClass(self):
+        self.TIMEOUT = 30
         self.base_site = "http://www.dronfelipe.com"
         self.random_segment = 'bvGnGqGr4nBl'
         self.driver = webdriver.Firefox()
+        self.driver.set_page_load_timeout(self.TIMEOUT)
 
     @classmethod
     def tearDownClass(self):
         self.driver.close()
 
-    def wait_for_ajax(self):
-        wait = WebDriverWait(self.driver, 10)
+    def wait_for_ajax(self, timeout=10, driver=None):
+        """Driver waits until timeout for AJAX request to finish."""
+        driver = driver if driver else self.driver
+        wait = WebDriverWait(driver, timeout)
         wait.until(lambda driver: driver.execute_script(
             "return jQuery.active == 0"))
+
 
     def test_home_about_nav(self):
         """Go to home page, click on dropdown, click on link to
@@ -36,6 +41,7 @@ class DronFelipe(unittest.TestCase):
         self.assertIn("dronfelipe", driver.title)
 
     def test_first_post(self):
+        """Go to first post link if it exists, check that post exists."""
         driver = self.driver
         driver.get(self.base_site)
         posts = driver.find_elements_by_class_name('post-item')
@@ -45,26 +51,40 @@ class DronFelipe(unittest.TestCase):
             driver.find_element_by_tag_name('footer')
 
     def test_non_existent_post(self):
+        """Check that non-existent posts redirect to correct page."""
         driver = self.driver
         driver.get('{}/posts/{}'.format(self.base_site, self.random_segment))
         assert "This post doesn't exist!" in driver.page_source
 
     def test_non_existent_page(self):
+        """Check that non-existent pages redirect to 404 page."""
         driver = self.driver
         driver.get('{}/{}'.format(self.base_site, self.random_segment))
         assert "This page doesn't exist..." in driver.page_source
 
     def test_nyt(self):
+        """Wait for articles to load, go to first article link, make sure
+        that it points to the NYT site. It elegantly prevents the driver
+        from waiting for the whole NYT site to load."""
         driver = self.driver
         driver.get('{}/nyt'.format(self.base_site))
 
         self.wait_for_ajax()
         article = driver.find_elements_by_css_selector(
             '.articles a')[0].get_attribute('href')
-        driver.get(article)
-        self.assertIn("New York Times", driver.title)
+
+        try:
+            driver.set_page_load_timeout(1)
+            driver.get(article)
+        except:
+            pass
+        finally:
+            driver.set_page_load_timeout(self.TIMEOUT)
+            self.assertIn("New York Times", driver.title)
 
     def test_tortas(self):
+        """Go to page, wait for menu to load, and check that the name of
+        the puesto is correctly formed."""
         driver = self.driver
         driver.get('{}/tortas'.format(self.base_site))
         self.wait_for_ajax()
@@ -72,6 +92,9 @@ class DronFelipe(unittest.TestCase):
         self.assertIn("torta", menu_header.text)
 
     def test_images(self):
+        """Go to images, get first image filename, go to URL that
+        should contain high-resolution version of this image
+        and check that it's there."""
         driver = self.driver
         driver.get('{}/images'.format(self.base_site))
         image = driver.find_elements_by_css_selector('section#images img')[0]
