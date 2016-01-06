@@ -9,6 +9,7 @@ class Functional(unittest.TestCase):
 
     @classmethod
     def setUpClass(self):
+        self.FAST_TIMEOUT = 5
         self.TIMEOUT = 30
         self.base_site = base_site
         self.random_segment = 'bvGnGqGr4nBl'
@@ -76,7 +77,7 @@ class Functional(unittest.TestCase):
             '.articles a')[0].get_attribute('href')
 
         try:
-            driver.set_page_load_timeout(1)
+            driver.set_page_load_timeout(self.FAST_TIMEOUT)
             driver.get(article)
         except:
             pass
@@ -125,7 +126,7 @@ if __name__ == "__main__":
     script, and it must be have the form 's=<base_site>'.
     """
     global base_site
-    base_site = "http://www.dronfelipe.com"
+    base_site = "http://dronfelipe.dev"
     site = sys.argv[-1].split('s=')
     if len(site) > 1:
         base_site = site[1]
