@@ -1,0 +1,18 @@
+---
+- hosts: all
+  sudo: true
+  roles:
+    - update
+    - common
+
+  tasks:
+    - name: Pull latest commits from Github
+      git:
+        repo={{ repository_url }}
+        dest={{ repository_root }}
+        clone=no
+        update=yes
+      when:
+        production
+      notify:
+        - reload apache

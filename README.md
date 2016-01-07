@@ -1,13 +1,13 @@
 # dronfelipe
-**[drohn fe-*lee*-pe]**
+**[drohn fe-_lee_-pe]**
 
-## Elastic (unchanging) IP
-`52.10.190.68`
+**Virtual host for development**  
+<http://dronfelipe.dev/>  
 
-## Virtual host for development
-<http://dronfelipe.dev/>
+**Elastic (unchanging) IP for production server**  
+`52.10.190.68`  
 
-## Document root
+**Document root**  
 `/var/www/dronfelipe/html`
 
 
@@ -36,7 +36,7 @@ ansible-playbook main.yml -i "dronfelipe.com," -e "production=True" -u ubuntu
 
 
 ## "Continuous" Integration
-A `pre-push` git hook runs functional tests against the code and rejects commits if tests fail. If the push succeeds, the changes can be pulled onto the production server using Ansible. A more complete solution involves pushing commits to a `dev` branch. Then, whenever this branch is merged into `master`, a [Github webhook](https://help.github.com/articles/about-webhooks/) could instruct the production server to pull the latest commits from `master`.
+A `pre-push` Git hook runs functional tests against the code and rejects commits if they fail. If the push succeeds, the changes can be pulled onto the production server using Ansible. A more complete solution involves pushing commits to a `dev` branch. Then, whenever this branch is merged into `master`, a [Github webhook](https://help.github.com/articles/about-webhooks/) instructs the production server to pull the latest commits from `master`.
 
 ```sh
 # pull from Github to production server
