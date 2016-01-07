@@ -1,0 +1,19 @@
+---
+- hosts: all
+  sudo: true
+  vars:
+    server_name: "default:80"
+    repository_url: "https://github.com/kylebebak/dronfelipe.git"
+    repository_root: /var/www/dronfelipe
+    document_root: "{{ repository_root }}/html"
+    mysql_db_name: dronfelipe
+    mysql_root_password: root
+    production: true
+    post: "post"
+
+  tasks:
+    - name: Retrieve stuff from mysql
+      command: >
+        mysql --user=root --password={{ mysql_root_password }} {{ mysql_db_name }}
+        --host=localhost --batch --skip-column-names
+        --execute="DELETE FROM post WHERE slug = '{{ post }}'"

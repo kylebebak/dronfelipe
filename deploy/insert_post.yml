@@ -1,0 +1,16 @@
+---
+- hosts: all
+  sudo: true
+  vars:
+    server_name: "default:80"
+    repository_url: "https://github.com/kylebebak/dronfelipe.git"
+    repository_root: /var/www/dronfelipe
+    document_root: "{{ repository_root }}/html"
+    mysql_root_password: root
+    production: true
+    post: "post.php"
+
+  tasks:
+    - name: Insert all posts into MySQL database
+      shell: "python {{ document_root }}/posts/insert_posts.py {{ document_root }}/posts/posts/{{ post }}"
+
