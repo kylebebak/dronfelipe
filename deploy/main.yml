@@ -48,12 +48,8 @@
         mode: u=rwx,g=rx,o=rx
         recurse: true
 
-    - name: Delete .git/hooks
-      shell: "rm -dr {{ repository_root }}/.git/hooks"
-      ignore_errors: yes
-
-    - name: Link hooks to .git/hooks
-      shell: "cd {{ repository_root }}/.git && ln -s ../deploy/hooks hooks"
+    - name: Copy hooks to .git/hooks
+      shell: "cp -p {{ repository_root }}/deploy/hooks/* {{ repository_root }}/.git/hooks"
 
 
 
