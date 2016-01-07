@@ -4,8 +4,8 @@
   <meta charset=utf-8>
   <title>dronfelipe</title>
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="../__partials/css/style.css">
-  <link rel="stylesheet" href="../posts/css/style.css">
+  <link rel="stylesheet" href="../../__partials/css/style.css">
+  <link rel="stylesheet" href="../../posts/css/style.css">
 </head>
 <body>
 

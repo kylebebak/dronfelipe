@@ -18,7 +18,9 @@ python functional.py -v [s=<base_site>]
 # run only one test
 python functional.py Functional.<test_function> -v [s=<base_site>]
 ```
-
+To "check" a post which has not been inserted to the `post` table, or to "check" an asset:  
+<http://dronfelipe.dev/check/post.php/?p=<filename_no_extension\>>  
+<http://dronfelipe.dev/check/asset.php/?a=<filename_no_extension\>>
 
 ## Deployment
 ### Development
