@@ -5,4 +5,3 @@ repository_root: /var/www/dronfelipe
 document_root: "{{ repository_root }}/html"
 mysql_db_name: dronfelipe
 mysql_root_password: root
-production: true

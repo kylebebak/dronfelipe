@@ -20,7 +20,7 @@ python functional.py Functional.<test_function> -v [s=<base_site>]
 ```
 
 
-## Provisioning
+## Deployment
 ### Development
 ```sh
 vagrant up
@@ -40,7 +40,7 @@ A `pre-push` Git hook runs functional tests against the code and rejects commits
 
 ```sh
 # pull from Github to production server
-ansible-playbook update.yml -i "dronfelipe.com," -u ubuntu
+ansible-playbook pull.yml -i "dronfelipe.com," -u ubuntu
 # insert post into DB on production server
 ansible-playbook insert_post.yml -i "dronfelipe.com," -e "post=<filename>" -u ubuntu
 ansible-playbook delete_post.yml -i "dronfelipe.com," -e "post=<slug>" -u ubuntu
