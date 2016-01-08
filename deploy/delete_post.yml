@@ -7,7 +7,7 @@
     post: "post"
 
   tasks:
-    - name: Retrieve stuff from mysql
+    - name: Deletes post from MySQL database
       command: >
         mysql --user=root --password={{ mysql_root_password }} {{ mysql_db_name }}
         --host=localhost --batch --skip-column-names

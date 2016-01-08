@@ -7,6 +7,6 @@
     post: "post.php"
 
   tasks:
-    - name: Insert all posts into MySQL database
+    - name: Insert post into MySQL database
       shell: "python {{ document_root }}/posts/insert_posts.py {{ document_root }}/posts/posts/{{ post }}"
 

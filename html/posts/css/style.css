@@ -28,3 +28,13 @@ li {
 div.paragraph {
   margin-bottom: 1.25em;
 }
+
+div.image {
+  text-align: center;
+  padding: 0em 0em 1em;
+}
+
+img {
+  display: inline-block;
+  max-width: 450px;
+}
