@@ -48,7 +48,7 @@ flagged_events <span style="color: #333333">=</span> <span style="color: #007020
 
 <h3>Performance</h3>
 <p>
-  Any approach to solving this problem will need to look at all the events. To undestand the performance of our approach, we consider that the queue is empty at the beginning, and is nearly empty (just one event remains) at the end.
+  Any approach to solving this problem will need to look at all the events. To understand the performance of our approach, we consider that the queue is empty at the beginning, and is nearly empty (just one event remains) at the end.
 </p>
 
 <p>

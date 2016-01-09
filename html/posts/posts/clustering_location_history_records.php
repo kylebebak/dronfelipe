@@ -10,11 +10,11 @@
 
 <h3>Motivation</h3>
 <p>
-  If you have an Android phone with location services turned on, whenever your phone is connected to the internet it sends <b>location history records</b> to Google's servers, one per minute. This is true of Microsoft's and Apple's phones as well. These records contain three important fields: <code>latitude</code>, <code>longitude</code>, and <code>timestamp</code>. If your phone is usually with you, these records give a very complete picture of where you were at any time in the past.
+  If you have an Android phone with location services turned on, whenever your phone is connected to the Internet it sends <b>location history records</b> to Google's servers, one per minute. This is true of Microsoft's and Apple's phones as well. These records contain three important fields: <code>latitude</code>, <code>longitude</code>, and <code>timestamp</code>. If your phone is usually with you, these records give a very complete picture of where you were at any time in the past.
 </p>
 
 <p>
-  Their usefulness, however, is limited by their number: location history is <b><em>too detailed</em></b>. In a year your phone will send 500,000 records to be saved in a database. Executing queries on millions of records to uncover patterns is difficult for both users and hardware. What's worse is that the records are semantically indentical. We know intuitively that 600 consecutive records with the same geographic coordinates represent something very different from a sequence of 30 records starting at home and ending at work, so we need a classification that makes this clear.
+  Their usefulness, however, is limited by their number: location history is <b><em>too detailed</em></b>. In a year your phone will send 500,000 records to be saved in a database. Executing queries on millions of records to uncover patterns is difficult for both users and hardware. What's worse is that the records are semantically identical. We know intuitively that 600 consecutive records with the same geographic coordinates represent something very different from a sequence of 30 records starting at home and ending at work, so we need a classification that makes this clear.
 </p>
 
 <div class="paragraph">
@@ -120,6 +120,6 @@
 
 <h3>Privacy</h3>
 <p>
-  For allowing users to track themselves in the privacy of their own phones, it's easy to write a client-side application to cluster and store location history records. But part of the tradition of the web is users trading privacy for convenience, or simply for the opposite of privacy. I think the networking features of location history, which can't be implemented client-side, will be embraced by users in the future. I wrote this clustering program, and built a front end for <a href="../location_history">exploring the results</a>, in 2014. Google probably thought of it before that, but didn't release <a href="https://www.google.com/maps/timeline">timeline</a> until 2015, because it's an idea that gives us pause. We need to get comfortable tracking ourselves before we are tracked by our friends.
+  For allowing users to track themselves in the privacy of their own phones, it's easy to write a client-side application to cluster and store location history records. But part of the tradition of the web is users trading privacy for convenience, or simply for the opposite of privacy. I think the networking features of location history, which can't be implemented client-side, will be embraced by users in the future. I wrote this clustering program, and built a front end for <a href="../location_history">exploring the results</a>, in 2014. Google probably thought of it before that, but didn't release <a href="https://www.google.com/maps/timeline">Timeline</a> until 2015, because it's an idea that <a href="http://venturebeat.com/2015/07/27/hands-on-with-google-maps-your-timeline-fascinating-but-freaky/">gives us pause</a>. We need to get comfortable tracking ourselves before we are tracked by our friends.
 </p>
 

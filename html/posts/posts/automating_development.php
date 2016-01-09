@@ -56,11 +56,11 @@
 
 <h3>Automated Testing: Git and Selenium</h3>
 <p>
-  There are lots of tools and platforms to automate testing, but for my purposes <b>Git</b> is sufficient. The setup is rustic but effective. I have a <code>pre-push</code> hook in my repo which gets copied into <code>.git/hooks</code> on deployment. Every time I try to push code to Github, the hook runs functional tests and rejects commits that break the site. I use <code>pre-push</code> instead of <code>pre-commit</code> to make sure I'm not discouraged from <a href="https://sethrobertson.github.io/GitBestPractices/#commit">comitting early and often</a>.
+  There are lots of tools and platforms to automate testing, but for my purposes <b>Git</b> is sufficient. The setup is rustic but effective. I have a <code>pre-push</code> hook in my repo which gets copied into <code>.git/hooks</code> on deployment. Every time I try to push code to Github, the hook runs functional tests and rejects commits that break the site. I use <code>pre-push</code> instead of <code>pre-commit</code> to make sure I'm not discouraged from <a href="https://sethrobertson.github.io/GitBestPractices/#commit">committing early and often</a>.
 </p>
 
 <p>
-  I write functional tests using <b>Selenium</b>. Selenium lets you code test scripts that fire up a browser and direct it from one page to another, clicking on things, entering text, and generally doing anything a user might do. You write tests that make assertions about what the html should look like, and how each page should react to various events, instead of having to do this by hand.
+  I write functional tests using <b>Selenium</b>. Selenium lets you code test scripts that fire up a browser and direct it from one page to another, clicking on things, entering text, and generally doing anything a user might do. You write tests that make assertions about what the HTML should look like, and how each page should react to various events, instead of having to do this by hand.
 </p>
 
 <p>
@@ -73,5 +73,5 @@
 </p>
 
 <p>
-  Git and Github (or analagous version control software and web apps) are pre-requisites for automation, and essential to being a happy programmer. They take the fear and stress out of coding. They encourage you to keep everything related to your project in one place, let you share it with anyone, and guarantee that none of it gets lost. In the spirit of these ideas, my site and the code I use to automate it are on Github, in case you want to <a href="https://github.com/kylebebak/dronfelipe">check it out</a>.
+  Git and Github (or analogous version control software and web apps) are prerequisites for automation, and essential to being a happy programmer. They take the fear and stress out of coding. They encourage you to keep everything related to your project in one place, let you share it with anyone, and guarantee that none of it gets lost. In the spirit of these ideas, my site and the code I use to automate it are on Github, in case you want to <a href="https://github.com/kylebebak/dronfelipe">check it out</a>.
 </p>
