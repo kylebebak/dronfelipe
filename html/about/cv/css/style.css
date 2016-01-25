@@ -1,0 +1,63 @@
+body {
+  font-family: sans-serif;
+  width: 760px;
+  margin: auto;
+  margin-top: 20px;
+  font-size: 1.15em;
+}
+
+
+.header {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 1.25em;
+  font-weight: bold;
+}
+
+.header-caption {
+  margin-top: 5px;
+  text-align: center;
+}
+
+.section-header {
+  margin: 20px 0px 15px;
+  padding-bottom: 5px;
+  font-size: 1.25em;
+  font-weight: bold;
+  border-bottom: 2px solid gray;
+}
+
+
+.slug {
+  font-weight: bold;
+  padding-right: 30px;
+}
+
+.align-left {
+  float: left;
+}
+.align-right {
+  float: right;
+}
+
+
+ul {
+  margin-top: 0px;
+}
+
+p.begin-description {
+  margin-top: 5px;
+}
+
+li {
+  padding-top: 3px;
+}
+
+a {
+  font-weight: bold;
+  text-decoration: none;
+  color: #0FA0CE;
+}
+a:hover {
+  color: black;
+}
