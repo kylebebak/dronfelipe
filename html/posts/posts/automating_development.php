@@ -29,7 +29,7 @@
 
 <h3>Works on My Machine</h3>
 <p>
-  I first developed this site using <b>MAMP</b>. Then I registered my domain, configured an Elastic IP with AWS, set up a <b>LAMP</b> stack on the server and copied the code over using <code>rsycn</code>. It didn't seem unsophisticated at the time. There was frustration and debugging of the <a href="http://blog.codinghorror.com/the-works-on-my-machine-certification-program/">WOMM</a> variety, but I figured it was part of the job, and that it might even build character.
+  I first developed this site using <b>MAMP</b>. Then I registered my domain, configured an Elastic IP with AWS, set up a <b>LAMP</b> stack on the server and copied the code over using <code>rsync</code>. It didn't seem unsophisticated at the time. There was frustration and debugging of the <a href="http://blog.codinghorror.com/the-works-on-my-machine-certification-program/">WOMM</a> variety, but I figured it was part of the job, and that it might even build character.
 </p>
 
 <p>
