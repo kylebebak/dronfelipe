@@ -43,13 +43,13 @@ class Functional(unittest.TestCase):
         driver.find_element_by_css_selector('a#home').click()
         self.assertIn("dronfelipe", driver.title)
 
-    def test_first_post(self):
-        """Go to first post link if it exists, check that post exists."""
+    def test_second_post(self):
+        """Go to second post link if it exists, check that post exists."""
         driver = self.driver
         driver.get(self.base_site)
         posts = driver.find_elements_by_class_name('post-item')
-        if len(posts):
-            driver.get(posts[0].find_element_by_css_selector('a').
+        if len(posts > 1):
+            driver.get(posts[1].find_element_by_css_selector('a').
                 get_attribute('href'))
             driver.find_element_by_tag_name('footer')
 
