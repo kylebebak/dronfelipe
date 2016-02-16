@@ -19,13 +19,13 @@
 	    <ul class="dropdown-menu" role="menu">
 
 	      <li><a href="nyt"><span class="menu-item">nyt</span></a></li>
-	      <li><a href="https://gist.github.com/kylebebak"><span class="menu-item">gists</span></a></li>
 	      <li><a href="tortas"><span class="menu-item">tortas</span></a></li>
 	      <li><a href="images"><span class="menu-item">images</span></a></li>
 	      <li><a href="https://www.facebook.com/elcomedordesanpascualbailongo?fref=ts"><span class="menu-item">el comedor</span></a></li>
 	      <li><a href="http://ojodecorazon.tumblr.com/"><span class="menu-item">ojo de corazón</span></a></li>
 	      <li><a href="location_history"><span class="menu-item">location history</span></a></li>
 	      <li role="separator" class="divider"></li>
+	      <li><a href="https://github.com/kylebebak/micro-posts"><span class="menu-item">micro-posts</span></a></li>
 	      <li><a href="about"><span class="menu-item">about</span></a></li>
 
 	    </ul>
@@ -48,6 +48,7 @@
 <h2>Posts</h2>
 
 <ul>
+	<li class="post-item"><a href="https://github.com/kylebebak/micro-posts">Micro-Posts</a></li>
 	<?php
 	$root = $_SERVER['DOCUMENT_ROOT'];
 	include_once "${root}/posts/models/Post.php";
@@ -63,8 +64,6 @@
 		</li>
 	<?php endforeach; ?>
 </ul>
-
-
 
 <a class="anchor" name="code"></a>
 <h2>Code</h2>
