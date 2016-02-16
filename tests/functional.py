@@ -48,7 +48,7 @@ class Functional(unittest.TestCase):
         driver = self.driver
         driver.get(self.base_site)
         posts = driver.find_elements_by_class_name('post-item')
-        if len(posts > 1):
+        if len(posts) > 1:
             driver.get(posts[1].find_element_by_css_selector('a').
                 get_attribute('href'))
             driver.find_element_by_tag_name('footer')
