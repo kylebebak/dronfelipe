@@ -25,7 +25,7 @@
 	      <li><a href="http://ojodecorazon.tumblr.com/"><span class="menu-item">ojo de corazón</span></a></li>
 	      <li><a href="location_history"><span class="menu-item">location history</span></a></li>
 	      <li role="separator" class="divider"></li>
-	      <li><a href="https://github.com/kylebebak/micro-posts"><span class="menu-item">micro-posts</span></a></li>
+	      <li><a href="https://github.com/kylebebak/posts"><span class="menu-item">posts</span></a></li>
 	      <li><a href="about"><span class="menu-item">about</span></a></li>
 
 	    </ul>
