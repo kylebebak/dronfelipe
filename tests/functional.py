@@ -43,22 +43,6 @@ class Functional(unittest.TestCase):
         driver.find_element_by_css_selector('a#home').click()
         self.assertIn("dronfelipe", driver.title)
 
-    def test_second_post(self):
-        """Go to second post link if it exists, check that post exists."""
-        driver = self.driver
-        driver.get(self.base_site)
-        posts = driver.find_elements_by_class_name('post-item')
-        if len(posts) > 1:
-            driver.get(posts[1].find_element_by_css_selector('a').
-                get_attribute('href'))
-            driver.find_element_by_tag_name('footer')
-
-    def test_non_existent_post(self):
-        """Check that non-existent posts redirect to correct page."""
-        driver = self.driver
-        driver.get('{}/posts/{}'.format(self.base_site, self.random_segment))
-        assert "This post doesn't exist!" in driver.page_source
-
     def test_non_existent_page(self):
         """Check that non-existent pages redirect to 404 page."""
         driver = self.driver

@@ -25,7 +25,7 @@
 	      <li><a href="http://ojodecorazon.tumblr.com/"><span class="menu-item">ojo de corazón</span></a></li>
 	      <li><a href="location_history"><span class="menu-item">location history</span></a></li>
 	      <li role="separator" class="divider"></li>
-	      <li><a href="https://github.com/kylebebak/posts"><span class="menu-item">posts</span></a></li>
+	      <li><a href="http://kylebebak.github.io/posts/"><span class="menu-item">posts</span></a></li>
 	      <li><a href="about"><span class="menu-item">about</span></a></li>
 
 	    </ul>
@@ -33,8 +33,8 @@
 	</ul>
 
 	<ul class="nav navbar-nav navbar-right">
-	  <li><a href="#posts">#posts</a></li>
-	  <li><a href="#code">#code</a></li>
+	  <li><a href="#posts-anchor">#posts</a></li>
+	  <li><a href="#code-anchor">#code</a></li>
 	</ul>
 
 </nav>
@@ -44,28 +44,14 @@
 
 
 
-<a class="anchor" name="posts" id="first-anchor"></a>
+<a class="anchor" name="posts-anchor" id="first-anchor"></a>
 <h2>Posts</h2>
 
-<ul>
-	<li class="post-item"><a href="https://github.com/kylebebak/micro-posts">Micro-Posts</a></li>
-	<?php
-	$root = $_SERVER['DOCUMENT_ROOT'];
-	include_once "${root}/posts/models/Post.php";
-	$query = "SELECT
-		id, written, slug, name, description, content, created, updated
-		FROM post
-		ORDER BY written DESC";
+<ul id="posts">
 
-	$posts = $db->rawQuery($query, null, false);
-	foreach ($posts as $post): ?>
-		<li class="post-item">
-		 	<a title="<?= $post['description'] ?>" href="posts/<?= $post['slug'] ?>"><?= $post['name'] ?></a>
-		</li>
-	<?php endforeach; ?>
 </ul>
 
-<a class="anchor" name="code"></a>
+<a class="anchor" name="code-anchor"></a>
 <h2>Code</h2>
 
 <ul>
