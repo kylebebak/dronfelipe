@@ -43,8 +43,5 @@ A `pre-push` Git hook runs functional tests against the code and rejects commits
 ```sh
 # pull from Github to production server
 ansible-playbook pull.yml -i "dronfelipe.com," -u ubuntu
-# insert post into DB on production server
-ansible-playbook insert_post.yml -i "dronfelipe.com," -e "post=<filename>" -u ubuntu
-ansible-playbook delete_post.yml -i "dronfelipe.com," -e "post=<slug>" -u ubuntu
 ```
 
