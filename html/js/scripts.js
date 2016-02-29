@@ -1,9 +1,9 @@
 (function() {
   var baseSite = "http://kylebebak.github.io";
-  var numPosts = 5;
+  var numPosts = 7;
   var fade = 700;
 
-  $.get( baseSite + '/posts/', function( data ) {
+  $.get(baseSite, function(data) {
     var container = $("ul#posts");
     var posts = $("ul.post-list li", $(data)).slice(0, numPosts);
 
@@ -15,7 +15,14 @@
       $(val).hide().appendTo(container).fadeIn(fade);
     });
 
-    $("<li><a href='http://kylebebak.github.io/posts/'>...more</a></li>").hide().appendTo(container).fadeIn(fade);
+    $("<li><a href='http://kylebebak.github.io'>...more</a></li>").hide().appendTo(container).fadeIn(fade);
+  });
+
+  $.get(baseSite + '/code', function(data) {
+    var container = $("div#code");
+    var code = $(".post-content>ul", $(data));
+
+    code.hide().appendTo(container).fadeIn(fade);
   });
 
 })();

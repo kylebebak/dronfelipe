@@ -25,7 +25,7 @@
 	      <li><a href="http://ojodecorazon.tumblr.com/"><span class="menu-item">ojo de corazón</span></a></li>
 	      <li><a href="location_history"><span class="menu-item">location history</span></a></li>
 	      <li role="separator" class="divider"></li>
-	      <li><a href="http://kylebebak.github.io/posts/"><span class="menu-item">posts</span></a></li>
+	      <li><a href="http://kylebebak.github.io"><span class="menu-item">posts</span></a></li>
 	      <li><a href="about"><span class="menu-item">about</span></a></li>
 
 	    </ul>
@@ -42,36 +42,25 @@
 
 <main>
 
-
-
 <a class="anchor" name="posts-anchor" id="first-anchor"></a>
 <h2>Posts</h2>
 
 <ul id="posts">
-
 </ul>
+
 
 <a class="anchor" name="code-anchor"></a>
 <h2>Code</h2>
 
-<ul>
-	<li><span class="content-item">Tortas</span> - Pon tu propio changarro de tortas. Genera un <a href="tortas">menú</a> digno de los mejores puestos: sumamente variado, internacional y sin sentido alguno.</li>
-
-	<li><span class="content-item">Match It</span> - An Android clone of the <a href="http://www.blueorangegames.com/index.php/games/spotit">Spot it!</a> card game, on Google Play Store <a href="https://play.google.com/store/apps/details?id=bebak.kyle.tap_it">here</a>.</li>
-
-	<li><span class="content-item">py-geohash-any</span> - A minimal Python geohash library designed to use any url-safe encoding. <a href="https://github.com/kylebebak/py-geohash-any">Here on Github</a>.</li>
-
-	<li><span class="content-item">Notes</span> - Because accessing your Evernotes takes too long. Notes provides a minimal syntax for manipulating notes from any working directory. You choose the file extension for your notes (the default is <a href="http://daringfireball.net/projects/markdown/">.md</a>), but for convenience Notes' syntax is completely independent of this extension. Combined with an editor like <a href="http://macdown.uranusjr.com/">MacDown</a>, or Sublime Text with a plugin like <a href="https://github.com/SublimeText-Markdown/MarkdownEditing">MarkdownEditing</a>, Notes recovers the formatting goodness you would otherwise lose switching from a note-taking app to plain text. Place your notes directory in your Dropbox or something similar to get syncing, versioning, and access from everywhere. <a href="https://github.com/kylebebak/notes">Check it out here</a>.</li>
-
-	<li><p><span class="content-item">Location History</span> - Unless you've disabled location services on your phone, Google (or Apple or Microsoft) is probably <a href="http://www.howtogeek.com/195647/googles-location-history-is-still-recording-your-every-move/">tracking your location</a>, in Google's case once a minute and accurate to 5 or 10 meters. There used to be an API for accessing this data, but now the best you can do is download your raw location history for a range of dates as KML or JSON via Google Takeout. I did this, ran a clustering algorithm on the data to create visit, location and trip instances, and put them in a database.</p>
-
-	<p>When run on about 18 months of my location data, this process turned up 4400 visits (clusters of points where I'd been stationary somewhere for more than 6 minutes) that correspond to 750 unique locations. Trips are the sequences of moving points that occur between visits. The data was a lot of fun to explore. Probed with simple queries it can answer interesting aggregate questions, like where are the top five places I spend time on Saturdays, or, over a period of 6 months, at what time on average did I leave work on each of the different weekdays.</p>
-
-	<p>I built a front end for this data using the Google Maps API and some JS plugins. The data doesn't reveal anything that makes me uncomfortable, <a href="location_history">so I made it available here</a>.</p></li>
-</ul>
+<div id="code">
+</div>
 
 
-<?php include "${root}/__partials/license.html"; ?>
+
+<?php
+$root = $_SERVER['DOCUMENT_ROOT'];
+include "${root}/__partials/license.html";
+?>
 
 </main>
 
