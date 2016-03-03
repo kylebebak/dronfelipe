@@ -5,17 +5,17 @@
 
   $.get(baseSite, function(data) {
     var container = $("ul#posts");
-    var posts = $("ul.post-list li", $(data)).slice(0, numPosts);
+    var posts = $("ul.post-list li a.post-link", $(data)).slice(0, numPosts);
 
     $.each(posts, function(i, val) {
-      $(val).addClass('post-item');
-      var link = $("a", val).attr('href');
-      $("a", val).attr('href', baseSite + link);
+      var link = $(val).attr('href');
+      $(val).attr('href', baseSite + link);
       $("span", val).remove();
+      $(val).wrapInner("<li class='post-item'></li>");
       $(val).hide().appendTo(container).fadeIn(fade);
     });
 
-    $("<li><a href='http://kylebebak.github.io'>...more</a></li>").hide().appendTo(container).fadeIn(fade);
+    $("<li><a href='" + baseSite + "'>...more</a></li>").hide().appendTo(container).fadeIn(fade);
   });
 
   $.get(baseSite + '/code', function(data) {
