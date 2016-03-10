@@ -118,3 +118,4 @@
 
     - name: Insert all posts into MySQL database
       shell: "python {{ document_root }}/posts/insert_posts.py {{ document_root }}/posts/posts/*.php"
+      ignore_errors: yes
