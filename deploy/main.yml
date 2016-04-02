@@ -6,6 +6,8 @@
     - common
   vars:
     production: false
+    vhost_file: "dronfelipe.conf"
+    dronfelipe_port: 8040
 
   tasks:
     - name: Install required packages
@@ -19,6 +21,7 @@
         - python-mysqldb
         - libapache2-mod-php5
         - python-pip
+        - nginx
 
     - name: Install Python packages
       pip: name={{ item }}
@@ -53,10 +56,40 @@
 
 
 
-    - name: Copy across new virtual host to sites-available
+
+    - name: Ensure nginx is started and enabled to start at boot.
+      service: name=nginx state=started enabled=yes
+
+    - name: Copy nginx configuration in place.
       template:
-        src=roles/common/templates/virtual-hosts.conf.j2
-        dest=/etc/apache2/sites-available/vagrant.conf
+        src: roles/common/templates/nginx.conf.j2
+        dest: /etc/nginx/nginx.conf
+        owner: root
+        group: root
+        mode: 0644
+      notify:
+        - reload nginx
+
+    - name: Copy across nginx virtual host straight to sites-enabled
+      template:
+        src=roles/common/templates/dronfelipe-nginx.conf.j2
+        dest="/etc/nginx/sites-enabled/{{ vhost_file }}"
+      notify:
+        - reload nginx
+
+    - name: Copy across apache virtual host to sites-available
+      template:
+        src=roles/common/templates/dronfelipe-apache.conf.j2
+        dest="/etc/apache2/sites-available/{{ vhost_file }}"
+      notify:
+        - reload apache
+
+    - name: Copy across apache ports.conf
+      template:
+        src=roles/common/templates/ports.conf.j2
+        dest="/etc/apache2/ports.conf"
+      notify:
+        - reload apache
 
     - name: Remove default virtual host
       file:
@@ -67,8 +100,8 @@
 
     - name: Add new virtual host to sites-enabled
       file:
-        src=/etc/apache2/sites-available/vagrant.conf
-        dest=/etc/apache2/sites-enabled/vagrant.conf
+        src="/etc/apache2/sites-available/{{ vhost_file }}"
+        dest="/etc/apache2/sites-enabled/{{ vhost_file }}"
         state=link
       notify:
         - reload apache
@@ -79,6 +112,8 @@
         state=present
       notify:
         - reload apache
+
+
 
 
 
@@ -102,8 +137,8 @@
         login_user='root'
         login_password={{ mysql_root_password }}
       with_items:
-          - location_history
-          - dronfelipe
+        - location_history
+        - dronfelipe
 
     - name: Import location history tables
       mysql_db:

@@ -1,5 +1,4 @@
-<VirtualHost *:80>
-  ServerName {{ server_name }}
+<VirtualHost *:{{ dronfelipe_port }}>
   DocumentRoot {{ document_root }}
 
   <Directory {{ document_root }}>

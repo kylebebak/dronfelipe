@@ -1,0 +1,20 @@
+server {
+  listen 80;
+  server_name dronfelipe.com;
+
+  location / {
+    proxy_pass http://localhost:{{ dronfelipe_port }};
+  }
+
+  access_log /var/log/nginx/dronfelipe-access.log;
+  error_log /var/log/nginx/dronfelipe-error.log;
+
+  sendfile on;
+  tcp_nopush on;
+  tcp_nodelay on;
+  keepalive_timeout 65;
+  types_hash_max_size 2048;
+
+  include /etc/nginx/mime.types;
+  default_type application/octet-stream;
+}
