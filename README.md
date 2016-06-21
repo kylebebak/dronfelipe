@@ -36,6 +36,11 @@ vagrant reload --provision
 ansible-playbook main.yml -i "dronfelipe.com," -e "production=True" -u ubuntu
 ```
 
+### Incremental Deployment
+```sh
+ansible-playbook pull.yml -i "dronfelipe.com," -e "production=True" -u ubuntu
+```
+
 
 ## "Continuous" Integration
 A `pre-push` Git hook runs functional tests against the code and rejects commits if they fail. If the push succeeds, the changes can be pulled onto the production server using Ansible. A more complete solution involves pushing commits to a `dev` branch. Then, whenever this branch is merged into `master`, a [Github webhook](https://help.github.com/articles/about-webhooks/) instructs the production server to pull the latest commits from `master`.
