@@ -20,7 +20,7 @@ include "${root}/__partials/navbar-right.html"; ?>
   Kyle Bebak is a web developer that lives between California and Mexico City. He enjoys reading, coding, fooling around with algorithms, writing, biking, boozing, and walking his dog.
 </p>
 <p>
-  He's available for freelance work. <a href="cv">Here's his CV</a> in HTML and CSS. Write him at <b><em>kyle bebak at geemail dot com</em></b>.
+  He's available for freelance work. <a href="cv">Here's his CV</a>. Write him at <b><em>kyle bebak at geemail dot com</em></b>.
 </p>
 
 <?php include "${root}/__partials/license.html"; ?>
