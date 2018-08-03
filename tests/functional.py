@@ -5,6 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 
+
 class Functional(unittest.TestCase):
 
     @classmethod
@@ -27,7 +28,6 @@ class Functional(unittest.TestCase):
         wait = WebDriverWait(driver, timeout)
         wait.until(lambda driver: driver.execute_script(
             "return jQuery.active == 0"))
-
 
     def test_home_about_nav(self):
         """Go to home page, click on dropdown, click on link to
@@ -96,8 +96,7 @@ class Functional(unittest.TestCase):
         driver.get('{}/location_history'.format(self.base_site))
         self.wait_for_ajax()
         driver.find_element_by_css_selector('a.select2-choice').click()
-        search =  driver.find_element_by_css_selector(
-            'div.select2-search input')
+        search = driver.find_element_by_css_selector('div.select2-search input')
         search.send_keys(Keys.DOWN)
         search.send_keys(Keys.RETURN)
         driver.find_element_by_css_selector('p#header')
@@ -116,4 +115,3 @@ if __name__ == "__main__":
         base_site = site[1]
         sys.argv.pop()
     unittest.main()
-

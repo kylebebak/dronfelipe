@@ -29,8 +29,6 @@
         - beautifulsoup4
         - PyMySQL
 
-
-
     - name: Create repository root
       file:
         path={{ repository_root }}
@@ -53,9 +51,6 @@
 
     - name: Copy hooks to .git/hooks
       shell: "cp -p {{ repository_root }}/deploy/hooks/* {{ repository_root }}/.git/hooks"
-
-
-
 
     - name: Ensure nginx is started and enabled to start at boot.
       service: name=nginx state=started enabled=yes
@@ -113,10 +108,6 @@
       notify:
         - reload apache
 
-
-
-
-
     - name: Set MySQL root password
       mysql_user:
         name=root
@@ -150,7 +141,3 @@
       with_items:
         - { db_name: 'location_history', file_name: 'location_history' }
         - { db_name: 'dronfelipe', file_name: 'post' }
-
-    - name: Insert all posts into MySQL database
-      shell: "python {{ document_root }}/posts/insert_posts.py {{ document_root }}/posts/posts/*.php"
-      ignore_errors: yes

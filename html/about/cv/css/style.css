@@ -6,7 +6,6 @@ body {
   font-size: 1.15em;
 }
 
-
 .header {
   margin-top: 10px;
   text-align: center;
@@ -27,7 +26,6 @@ body {
   border-bottom: 2px solid gray;
 }
 
-
 .slug {
   font-weight: bold;
   padding-right: 30px;
@@ -39,7 +37,6 @@ body {
 .align-right {
   float: right;
 }
-
 
 ul {
   margin-top: 0px;
