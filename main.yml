@@ -121,7 +121,6 @@
         login_password={{ mysql_root_password }}
       with_items:
         - location_history
-        - dronfelipe
 
     - name: Import location history tables
       mysql_db:
@@ -132,4 +131,3 @@
         login_password={{ mysql_root_password }}
       with_items:
         - { db_name: 'location_history', file_name: 'location_history' }
-        - { db_name: 'dronfelipe', file_name: 'post' }

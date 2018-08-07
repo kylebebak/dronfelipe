@@ -89,7 +89,7 @@ if __name__ == "__main__":
     script, and it must be have the form 's=<base_site>'.
     """
     global base_site
-    base_site = "http://dronfelipe.dev"
+    base_site = "http://localhost"
     site = sys.argv[-1].split('s=')
     if len(site) > 1:
         base_site = site[1]

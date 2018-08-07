@@ -1,7 +1,0 @@
----
-- name: Clean /var/lib/apt/lists/
-  shell: rm /var/lib/apt/lists/* -vf
-  ignore_errors: yes
-
-- name: Update apt cache
-  apt: update_cache=yes
