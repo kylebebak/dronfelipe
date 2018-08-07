@@ -18,16 +18,8 @@
         - mysql-server
         - php5
         - php5-mysql
-        - python-mysqldb
         - libapache2-mod-php5
-        - python-pip
         - nginx
-
-    - name: Install Python packages
-      pip: name={{ item }}
-      with_items:
-        - beautifulsoup4
-        - PyMySQL
 
     - name: Create repository root
       file:

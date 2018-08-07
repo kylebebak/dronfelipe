@@ -29,7 +29,7 @@ class Functional(unittest.TestCase):
         wait.until(lambda driver: driver.execute_script(
             "return jQuery.active == 0"))
 
-    def test_home_about_nav(self):
+    def test_home(self):
         """Go to home page, click on dropdown, click on link to
         about page, go back to home page."""
         driver = self.driver
@@ -48,26 +48,6 @@ class Functional(unittest.TestCase):
         driver = self.driver
         driver.get('{}/{}'.format(self.base_site, self.random_segment))
         assert "This page doesn't exist..." in driver.page_source
-
-    def test_nyt(self):
-        """Wait for articles to load, go to first article link, make sure
-        that it points to the NYT site. It elegantly prevents the driver
-        from waiting for the whole NYT site to load."""
-        driver = self.driver
-        driver.get('{}/nyt'.format(self.base_site))
-
-        self.wait_for_ajax()
-        article = driver.find_elements_by_css_selector(
-            '.articles a')[0].get_attribute('href')
-
-        try:
-            driver.set_page_load_timeout(self.FAST_TIMEOUT)
-            driver.get(article)
-        except:
-            pass
-        finally:
-            driver.set_page_load_timeout(self.TIMEOUT)
-            self.assertIn("New York Times", driver.title)
 
     def test_tortas(self):
         """Go to page, wait for menu to load, and check that the name of

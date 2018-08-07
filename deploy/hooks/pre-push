@@ -1,7 +1,0 @@
-#!/bin/bash
-
-fullpath="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-python "${fullpath}/../../tests/functional.py" -v s=http://dronfelipe.dev
-STATUS=$?
-printf "\npre-push tests finished with status: ${STATUS}\n\n"
-exit ${STATUS}

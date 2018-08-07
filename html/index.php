@@ -17,11 +17,8 @@
 	    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="home">dronfelipe <span class="caret"></span></a>
 	    <ul class="dropdown-menu" role="menu">
 
-	      <li><a href="nyt"><span class="menu-item">nyt</span></a></li>
 	      <li><a href="tortas"><span class="menu-item">tortas</span></a></li>
 	      <li><a href="images"><span class="menu-item">images</span></a></li>
-	      <li><a href="https://www.facebook.com/elcomedordesanpascualbailongo?fref=ts"><span class="menu-item">el comedor</span></a></li>
-	      <li><a href="http://ojodecorazon.tumblr.com/"><span class="menu-item">ojo de corazón</span></a></li>
 	      <li><a href="location_history"><span class="menu-item">location history</span></a></li>
 	      <li role="separator" class="divider"></li>
 	      <li><a href="http://kylebebak.github.io"><span class="menu-item">posts</span></a></li>
@@ -43,7 +40,6 @@
 
 <ul id="posts">
 </ul>
-
 
 <a class="anchor" name="code-anchor"></a>
 <h2>Code</h2>
