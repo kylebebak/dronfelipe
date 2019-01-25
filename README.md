@@ -23,10 +23,15 @@ Need to get off of Apache first, which probably means getting off of PHP.
 
 
 ### Production
-I ditched Ansible for Docker, but haven't set up Docker containers yet. Just copy files over to the server using `scp`...
+I ditched Ansible a long time ago, which means the old deployment process is broken.
 
+Until I get a Docker container set up for this, deployment means copying files over to the server using `scp`...
 
-```sh
-# pull from Github to production server
-ansible-playbook pull.yml -i "dronfelipe.com," -u ubuntu
-```
+~~~sh
+# make sure "ubuntu" user has write access to `/var/www/dronfelipe`
+ssh -i ~/.ssh/id_rsa ubuntu@52.10.190.68
+sudo chown -R $USER /var/www/dronfelipe/
+
+# copy files
+scp -i ~/.ssh/id_rsa -r html ubuntu@52.10.190.68:/var/www/dronfelipe
+~~~
