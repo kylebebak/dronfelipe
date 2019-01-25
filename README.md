@@ -35,3 +35,11 @@ sudo chown -R $USER /var/www/dronfelipe/
 # copy files
 scp -i ~/.ssh/id_rsa -r html ubuntu@52.10.190.68:/var/www/dronfelipe
 ~~~
+
+
+## SSL
+For legacy reasons, the site uses NGINX in front of Apache. SSL termination happens at the NGINX layer.
+
+I use Let's Encrypt to generate SSL certificates and modify `dronfelipe-nginx.conf` to use them. Instructions on how to install and use Let's Encrypt [can be found here](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-16-04).
+
+This config also conveniently redirects __http__ to __https__.
