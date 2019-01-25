@@ -1,5 +1,5 @@
 (function() {
-  var baseSite = "http://kylebebak.github.io";
+  var baseSite = "https://kylebebak.github.io";
   var numPosts = 7;
   var fade = 700;
 

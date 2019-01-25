@@ -21,7 +21,7 @@
 	      <li><a href="images"><span class="menu-item">images</span></a></li>
 	      <li><a href="location_history"><span class="menu-item">location history</span></a></li>
 	      <li role="separator" class="divider"></li>
-	      <li><a href="http://kylebebak.github.io"><span class="menu-item">posts</span></a></li>
+	      <li><a href="https://kylebebak.github.io"><span class="menu-item">posts</span></a></li>
 	      <li><a href="about"><span class="menu-item">about</span></a></li>
 
 	    </ul>
